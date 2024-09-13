@@ -1,0 +1,1 @@
+export const departmentsList =  ['Finance', 'Risk', 'Pricing', 'Strategy & Investment', 'Audit', 'Sales', 'Customer Service', 'Marketing', 'IT', 'Cybersecurity', 'Data Science', 'HR', 'Legal']

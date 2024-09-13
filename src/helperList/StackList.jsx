@@ -1,0 +1,33 @@
+export const stackList = [
+    'Python', '.Net', 'Node.js', 'JavaScript', 'CSS', 'HTML', 'React', 'React Native', 'Vue.js', 'Angular', 
+    'C#', 'C', 'C++', 'Java', 'Laravel', 'Ruby', 'PHP', 'Swift', 'Go (Golang)', 'Kotlin', 'Haskell', 'Scala', 
+    'Erlang', 'Clojure', 'F#', 'Perl', 'Bash', 'Lua', 'Groovy', 'Assembly Language', 'R', 'MATLAB', 'TypeScript', 
+    'Dart', 'SQL', 'VHDL', 'Verilog', 'Brainfuck', 'Piet', 'Rust', 'Objective-C', 'Julia', 'Ada', 'Fortran', 
+    'COBOL', 'Pascal', 'Prolog', 'Smalltalk', 'ABAP (Advanced Business Application Programming)', 'Elm', 'Elixir', 
+    'Ocaml', 'Crystal', 'Nim', 'Logo', 'APL', 'LabVIEW', 'Lisp', 'SystemVerilog', 'Delphi', 'ColdFusion', 
+    'ActionScript', 'Tcl (Tool Command Language)', 'Hack', 'Forth', 'VBA', 'Django', 'PostgreSQL', 'NoSQL', 
+    'MongoDB', 'Microservices', 'Flask', 'FastAPI', 'Unit Testing', 'GraphQL', 'PowerBI', 'Tableau', 'BigQuery', 
+    'Looker Studio', 'Google Sheets', 'Qlik', 'Plotly', 'Apache Hadoop', 'Apache Spark', 'Apache Kafka', 
+    'Scikit-learn', 'TensorFlow', 'PyTorch', 'Keras', 'Apache Airflow', 'Talend', 'Informatica', 'Jupyter Notebook', 
+    'Rstudio', 'Apache Zeppelin', 'Trifacta', 'Alteryx', 'DataRobot', 'D3.js', 'Sisense', 'InfluxDB', 'Prometheus', 
+    'SAS (Statistical Analysis System)', 'SPSS (Statistical Package for the Social Sciences)', 'Pentaho', 
+    'Apache Nifi', 'IBM Db2', 'Flink', 'Storm', 'Snowflake', 'Redshift', 'Ruby on Rails', 'ASP.NET Core', 
+    'Spring Boot', 'Express', 'Flutter', 'Xamarin', 'Ionic', 'Unity', 'Unreal Engine', 'Godot', '.NET Framework', 
+    'Spring Framework', 'Bootstrap', 'Foundation', 'Git', 'Docker', 'Kubernetes', 'Vagrant', 'Junit', 'Nunit', 
+    'pytest', 'Selenium', 'TestComplete', 'Cypress', 'Jmeter', 'LoadRunner', 'Jenkins', 'CircleCI', 'CI/CD', 
+    'Ansible', 'Chef', 'Puppet', 'Nagios', 'Grafana', 'MySQL', 'Oracle', 'SQL Server', 'Cassandra', 'Redis', 
+    'phpMyAdmin', 'Dbeaver', 'SQL Developer', 'AWS', 'GCP (Google Cloud Platform)', 'Azure', 'Heroku', 
+    'OpenShift', 'Excel', 'Word', 'PowerPoint', 'Microsoft Power Automate', 'Zabbix', 'PRTG Network Monitor', 
+    'Wireshark', 'Cisco DNA Center', 'SolarWinds Network Configuration Manager', 'pfSense', 'Cisco ASA', 
+    'CloudFlare', 'Symantec', 'McAfee', 'Bitdefender', 'Metasploit', 'Burp Suite', 'OWASP ZAP', 'Jira', 'Trello', 
+    'Asana', 'Confluence', 'Notion', 'Miro', 'Slack', 'Teams', 'Zoom', 'Postman', 'Swagger', 'SonarQube', 
+    'Coverity', 'Nexus', 'Artifactory', 'Adobe XD', 'Sketch', 'Figma', 'Balsamiq', 'Axure', 'Google Analytics', 
+    'SEMrush', 'Ahrefs', 'Moz Pro', 'Yoast SEO', 'Majestic', 'HubSpot', 'Hootsuite', 'Mailchimp', 'Buffer', 
+    'Sprout Social', 'BuzzSumo', 'Contently', 'Grammarly', 'Hemingway Editor', 'Adobe Premiere Pro', 
+    'Final Cut Pro', 'DaVinci Resolve', 'iMovie', 'Sony Vegas Pro', 'Adobe Photoshop', 'Adobe Illustrator',
+    'CorelDRAW', 'Affinity Designer', 'GIMP', 'Adobe Lightroom', 'Capture One', 'Skylum Luminar', 'Darktable ',
+    'Paint.NET', 'Adobe After Effects', 'Blender', 'Toon Boom Harmony', 'Moho (Anime Studio)', 'Cinema 4D', 
+    'Canva'
+
+  ];
+  
