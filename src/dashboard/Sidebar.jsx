@@ -13,12 +13,19 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
   const [selectedItem, setSelectedItem] = useState("Get Started");
   const user = localStorage.getItem("user");
   const userData = JSON.parse(user);
+
+  const googleUser = localStorage.getItem("googleUser");
+
+  const googleUserData = JSON.parse(googleUser);
+
   const userCompany = localStorage.getItem("userCompany");
   const userDataCompany = JSON.parse(userCompany);
+
   const { logOut } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const [isOpenMenu, setIsOpenMenu] = useState(false)
+  const [isOpenMenuUser, setIsOpenMenuUser] = useState(false)
 
   const [open, setOpen] = useState(true);
 
@@ -41,41 +48,53 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
   }, []);
 
   useEffect(() => {
-    if (!user && ["/", "/contest", "/statistics", "/messages", "/signin"].includes(location.pathname)) {
+    if (!user || googleUser && ["/", "/contest", "/statistics", "/messages", "/signin"].includes(location.pathname)) {
       setSelectedItem("Get Started");
     }
-  }, [location.pathname, user]);
+  }, [location.pathname, user, googleUser]);
 
 
   const handleNavigateStart = () => {
-    navigate("/signin");
+    navigate("/login");
   };
-  const handleNavigateStartRegister=()=>{
+  const handleNavigateStartRegister = () => {
     navigate("/register");
   }
 
+  const handleNavigateStartUser = () => {
+    navigate("/user-login");
+  };
+  const handleNavigateStartRegisterUser = () => {
+    navigate("/user-register");
+  }
+
+
   const handleNavigateLogIn = () => {
-    navigate("/login")
+    navigate("/applicant-signin")
   }
 
   return (
-    <div className="h-full w-full bg-lightPrimary dark:!bg-zinc-900 duration-200">
+    <div className="h-full w-full bg-lightPrimary dark:!bg-navy-900 duration-200">
       <main className={`mx-[12px] h-full flex-none transition-all md:pr-2`}>
-        <nav className="bg-lightPrimary dark:!bg-zinc-900 py-6 sticky top-4 z-40 rounded-xl bg-white/10 p-2 backdrop-blur-xl dark:bg-[#0b14374d]">
+        <nav className="bg-lightPrimary dark:!bg-navy-900 py-6 sticky top-4 z-40 rounded-xl bg-white/10 p-2 backdrop-blur-xl dark:bg-[#0b14374d]">
           {/* navbar div */}
           <div className="flex justify-between items-center ">
             {/* <div className="ml-[6px]">
-                  <p className="shrink text-[33px] capitalize text-zinc-700 dark:text-white">
-                    <Link to="#" className="font-bold capitalize hover:text-zinc-700 dark:hover:text-white">
+                  <p className="shrink text-[33px] capitalize text-navy-700 dark:text-white">
+                    <Link to="#" className="font-bold capitalize hover:text-navy-700 dark:hover:text-white">
                     </Link>
                   </p>
                 </div> */}
 
             {/* logo hissesi */}
-            <div className="mx-[56px]">
-              <div className="ml-1 font-poppins text-[26px] font-bold uppercase text-zinc-700 dark:text-white">
-                <Link to="/" className="mt-1 ml-1 h-2.5 font-poppins text-[26px] font-bold uppercase text-zinc-700 dark:text-white">
-                  <span className="font-medium">Opportu</span> Land </Link>
+            <div className="md:mx-[56px] mx-[20px] flex ">
+              <div className="font-poppins md:text-[26px] text-[16px] font-bold uppercase text-navy-700 dark:text-white">
+                <Link to="/" className="flex h-2.5 font-poppins font-bold uppercase text-navy-700 dark:text-white">
+                  <span className="font-medium">Opportu</span> <p>Land</p> </Link>
+              </div>
+              {/* theme hissesi */}
+              <div >
+                <Theme />
               </div>
             </div>
 
@@ -84,30 +103,31 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                 {/* linkler */}
                 <div className="flex items-center gap-10 ">
 
-                  <ul className="lg:flex items-center space-x-8 ml-10 hidden">
-                    <li>
+                  <ul className="flex items-center md:space-x-8 md:ml-10 ">
+
+                    <li className="lg:flex hidden">
                       <Link
                         to="/"
-                        className={`text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/") ? "text-yellow-500" : "text-zinc-700 dark:text-white"
+                        className={`text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/") ? "text-yellow-500" : "text-navy-700 dark:text-white"
                           } hover:text-yellow-500 dark:hover:text-yellow-500`}
                       >
                         Home
                       </Link>
                     </li>
-                    <li>
+                    <li className="lg:flex hidden">
                       <Link
                         to="/contest"
-                        className={`text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/contest") ? "text-yellow-500" : "text-zinc-700 dark:text-white"
+                        className={`text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/contest") ? "text-yellow-500" : "text-navy-700 dark:text-white"
                           } hover:text-yellow-500 dark:hover:text-yellow-500`}
                       >
                         Contests
                       </Link>
                     </li>
 
-                    <li>
+                    <li className="lg:flex hidden">
                       <Link
                         to="/remote"
-                        className={`text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/remote") ? "text-yellow-500" : "text-zinc-700 dark:text-white"
+                        className={`text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/remote") ? "text-yellow-500" : "text-navy-700 dark:text-white"
                           } hover:text-yellow-500 dark:hover:text-yellow-500`}
                       >
                         Remote
@@ -118,8 +138,8 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                     <Link
                       to="/statistics"
                       className={`font-bold text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${
-                        isActive("/statistics") ? "text-orange-500" : "text-zinc-700 dark:text-white"
-                      } hover:text-orange-500 dark:hover:text-orange-500`}
+                        isActive("/statistics") ? "text-yellow-500" : "text-navy-700 dark:text-white"
+                      } hover:text-yellow-500 dark:hover:text-yellow-500`}
                     >
                       Statistics
                     </Link>
@@ -128,8 +148,8 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                       <li>
                         <Link
                           to="/messages"
-                          className={`font-bold text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/messages") ? "text-orange-500" : "text-zinc-700 dark:text-white"
-                            } hover:text-orange-500 dark:hover:text-orange-500`}
+                          className={`font-bold lg:flex hidden text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/messages") ? "text-yellow-500" : "text-navy-700 dark:text-white"
+                            } hover:text-yellow-500 dark:hover:text-yellow-500`}
                         >
                           Messages
                         </Link>
@@ -137,15 +157,15 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                     )}
 
                     {/* admin hissesindeki dahsboard */}
-                    {user ? (
+                    {user || googleUser ? (
                       <>
-                        <Menu as="div" className="relative inline-block text-left ">
+                        <Menu as="div" className="lg:flex hidden relative text-left ">
                           <div>
                             <Menu.Button
                               style={{ background: theme.dark, color: theme.white }}
                               className="px-2 inline-flex w-full border-none justify-center gap-x-1.5 rounded-md py-2 text-sm font-semibold text-gray-900 shadow-sm"
                             >
-                              {userData.username}
+                              {user ? userData.username : googleUserData.name}
                               <ChevronDownIcon
                                 className="-mr-1 h-5 w-5 text-gray-400"
                                 aria-hidden="true"
@@ -177,7 +197,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                                 </Menu.Item>
                                 <Menu.Item style={{ background: theme.dark, color: theme.white }}>
                                   <Link
-                                    to="signin"
+                                    to="applicant-signin"
                                     className="text-gray-700 block px-4 py-2 text-sm text-bold"
                                     onClick={logOut}
                                   >
@@ -194,79 +214,84 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                       userDataCompany.admin ? (
                         <Link
                           to="/admin/default"
-                          className={`ml-8 font-bold text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/admin/default") ? "text-orange-500" : "text-zinc-700 dark:text-white"
-                            } hover:text-orange-500 dark:hover:text-orange-500`}
+                          className={`ml-8 font-bold lg:flex hidden text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/admin/default") ? "text-yellow-500" : "text-navy-700 dark:text-white"
+                            } hover:text-yellow-500 dark:hover:text-yellow-500`}
                         >
                           Dashboard
                         </Link>
                       ) : (
                         <Link
                           to="/admin/my-contests"
-                          className={`ml-8 font-bold text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/admin/my-contests") ? "text-orange-500" : "text-zinc-700 dark:text-white"
-                            } hover:text-orange-500 dark:hover:text-orange-500`}
+                          className={`ml-8 font-bold lg:flex hidden text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/admin/my-contests") ? "text-yellow-500" : "text-navy-700 dark:text-white"
+                            } hover:text-yellow-500 dark:hover:text-yellow-500`}
                         >
                           Dashboard
                         </Link>
                       )
+
                     ) : (
                       <>
+                        {/* button hissesi */}
+                        <div className="flex gap-3 px-2">
+                          <button
+                            onClick={() => setIsOpenMenuUser((prev) => !prev)}
+                            className="flex justify-center items-center md:px-4 md:py-1.5 border-2 border-yellow-400 text-yellow-500  rounded-md hover:bg-yellow-400 duration-200 hover:text-white">
+                            <div className="flex gap-1">
+                              <p>Log</p>
+                              <p>In</p>
+                            </div>
 
+                            {isOpenMenuUser && (
+                              <div className="absolute top-[73px] flex flex-col px-2 
+                                items-start bg-zinc-400  rounded-md text-white ">
+                                <p
+                                  onClick={handleNavigateStartUser}
+                                  className="hover:text-yellow-300 duration-200 ">
+                                  Log in
+                                </p>
+                                <p
+                                  onClick={handleNavigateStartRegisterUser}
+                                  className="hover:text-yellow-300 duration-200">
+                                  Register
+                                </p>
+                              </div>
+                            )}
+                          </button>
 
+                          <button
+                            onClick={() => setIsOpenMenu((prev) => !prev)}
+                            className="flex justify-center items-center p-2 bg-yellow-400 text-black rounded-md text-zinc-700 hover:bg-yellow-500 hover:text-white duration-200 focus:outline-none">
+                            <div className="flex gap-1">
+                              <p>For</p>
+                              <p>Employer</p>
+                            </div>
+                            {!isOpenMenu ? (
+                              <AiOutlineCaretDown className="h-6" />
+                            ) : (
+                              <AiOutlineCaretUp className="h-6" />
+                            )}
+
+                            {isOpenMenu && (
+                              <div className="absolute top-[73px] flex flex-col px-2 
+                                items-start bg-zinc-400 w-32 rounded-md text-white ">
+                                <p
+                                  onClick={handleNavigateStart}
+                                  className="hover:text-yellow-300 duration-200 ">
+                                  Log in
+                                </p>
+                                <p
+                                  onClick={handleNavigateStartRegister}
+                                  className="hover:text-yellow-300 duration-200">
+                                  Register
+                                </p>
+                              </div>
+                            )}
+                          </button>
+                        </div>
                       </>
                     )}
                   </ul>
-                  {/* button hissesi */}
-                  <div className="flex gap-3 px-2">
-                    {/* theme hissesi */}
-                    <div className="ml-8 lg:flex hidden">
-                      <Theme />
-                    </div>
-
-                    <button
-                      onClick={handleNavigateLogIn}
-                      className=" flex justify-center items-center px-4 py-1.5 border-2 border-yellow-400 text-yellow-500  rounded-md hover:bg-yellow-400 duration-200 hover:text-white"
-                    >
-                      Log in
-                    </button>
-
-                    {/* evvelki button */}
-                    {/* <button
-                      onClick={handleNavigateStart}
-                      className="flex justify-center items-center p-2 bg-yellow-400 text-black rounded-md text-zinc-700 hover:bg-yellow-500 hover:text-white duration-200 focus:outline-none"
-                    >
-                      For Employer
-                    </button> */}
-
-                    <button
-                      onClick={() => setIsOpenMenu((prev) => !prev)}
-                      className="flex justify-center items-center p-2 bg-yellow-400 text-black rounded-md text-zinc-700 hover:bg-yellow-500 hover:text-white duration-200 focus:outline-none">
-                      For Employer
-                      {!isOpenMenu ? (
-                        <AiOutlineCaretDown className="h-6" />
-                      ) : (
-                        <AiOutlineCaretUp className="h-6" />
-                      )}
-
-                      {isOpenMenu && (
-                        <div className="absolute top-[73px] flex flex-col px-2 
-                        items-start bg-zinc-400 w-32 rounded-md text-white ">
-                          <p
-                            onClick={handleNavigateStart}
-                            className="hover:text-yellow-300 duration-200 ">
-                            Log in
-                          </p>
-                          <p
-                            onClick={handleNavigateStartRegister}
-                            className="hover:text-yellow-300 duration-200">
-                            Register
-                          </p>
-                        </div>
-                      )}
-                    </button>
-
-                  </div>
                 </div >
-
                 {/* responsive bar */}
                 <div>
                   {!isOpen && (
@@ -276,7 +301,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                     />
                   )}
                 </div>
-                
+
               </div >
             </div>
           </div >

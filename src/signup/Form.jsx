@@ -80,7 +80,7 @@ export default function Form({
     //   >
     //     <div className="h-full">
     <div className="">
-    {loading ? <div className='fixed inset-0 z-50'> <Loading /> </div> : null}
+      {loading ? <div className='fixed inset-0 z-50'> <Loading /> </div> : null}
       <button className="absolute right-4 top-4">
         <img className="w-10 h-10" src={Close} alt="closeIcon.svg" />
       </button>
@@ -295,7 +295,7 @@ export default function Form({
               className="text-blue-500 underline font-semibold terms-link cursor-pointer"
               onClick={() => handleModalToggle("terms")}
             >
-               Terms
+              Terms
             </span>
             . Learn how we process your data in
             <span> </span>
@@ -310,98 +310,98 @@ export default function Form({
           {showModal && (
             <div className="modal">
               <div className="modal-content">
-               
+
                 {modalType === "terms" ? (
-               
-                    <div className="fixed z-10 inset-0 overflow-y-auto">
-                      <div className="flex items-center justify-center min-h-screen">
-                        <div
-                          className="fixed inset-0 transition-opacity"
-                          aria-hidden="true"
-                        >
-                          <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
 
-                        </div>
-                        <div className="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all w-[62rem]">
-                          <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                            <div className="sm:flex sm:items-start">
-                              <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-                           
-                              <button
-                  onClick={handleCloseModal}
-                  type="button"
-                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
-                >
-                  X
-                </button>
-                              </div>
-                              <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                                <h3
-                                  className="text-lg leading-6 font-medium text-gray-900"
-                                  id="modal-headline"
-                                >
-                                     {title}
-                                </h3>
-                                <div className="mt-2">
-                                  <p className="text-sm text-gray-500">
-                                  {text}
-                                  </p>
-                                  <span>{date}</span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse"></div>
-                        </div>
-                      </div>
-                    </div>
-                
-                   
-           
-                ) : (
                   <div className="fixed z-10 inset-0 overflow-y-auto">
-                  <div className="flex items-center justify-center min-h-screen">
-                    <div
-                      className="fixed inset-0 transition-opacity"
-                      aria-hidden="true"
-                    >
-                      <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
+                    <div className="flex items-center justify-center min-h-screen">
+                      <div
+                        className="fixed inset-0 transition-opacity"
+                        aria-hidden="true"
+                      >
+                        <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
 
-                    </div>
-                    <div className="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all w-[62rem]">
-                      <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                        <div className="sm:flex sm:items-start">
-                          <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-                       
-                          <button
-              onClick={handleCloseModal}
-              type="button"
-              className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
-            >
-              X
-            </button>
-                          </div>
-                          <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                            <h3
-                              className="text-lg leading-6 font-medium text-gray-900"
-                              id="modal-headline"
-                            >
-                                 {PrivacyTitle}
-                            </h3>
-                            <div className="mt-2">
-                              <p className="text-sm text-gray-500">
-                              {PrivacyText}
-                              </p>
-                              <span>{PrivacyDate}</span>
+                      </div>
+                      <div className="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all w-[62rem]">
+                        <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                          <div className="sm:flex sm:items-start">
+                            <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+
+                              <button
+                                onClick={handleCloseModal}
+                                type="button"
+                                className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
+                              >
+                                X
+                              </button>
+                            </div>
+                            <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                              <h3
+                                className="text-lg leading-6 font-medium text-gray-900"
+                                id="modal-headline"
+                              >
+                                {title}
+                              </h3>
+                              <div className="mt-2">
+                                <p className="text-sm text-gray-500">
+                                  {text}
+                                </p>
+                                <span>{date}</span>
+                              </div>
                             </div>
                           </div>
                         </div>
+                        <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse"></div>
                       </div>
-                      <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse"></div>
                     </div>
                   </div>
-                </div>
-             
+
+
+
+                ) : (
+                  <div className="fixed z-10 inset-0 overflow-y-auto">
+                    <div className="flex items-center justify-center min-h-screen">
+                      <div
+                        className="fixed inset-0 transition-opacity"
+                        aria-hidden="true"
+                      >
+                        <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
+
+                      </div>
+                      <div className="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all w-[62rem]">
+                        <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                          <div className="sm:flex sm:items-start">
+                            <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+
+                              <button
+                                onClick={handleCloseModal}
+                                type="button"
+                                className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
+                              >
+                                X
+                              </button>
+                            </div>
+                            <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                              <h3
+                                className="text-lg leading-6 font-medium text-gray-900"
+                                id="modal-headline"
+                              >
+                                {PrivacyTitle}
+                              </h3>
+                              <div className="mt-2">
+                                <p className="text-sm text-gray-500">
+                                  {PrivacyText}
+                                </p>
+                                <span>{PrivacyDate}</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse"></div>
+                      </div>
+                    </div>
+                  </div>
+
                 )}
               </div>
             </div>

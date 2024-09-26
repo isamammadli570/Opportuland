@@ -11,6 +11,8 @@ export const TokenManager = ({ children }) => {
   const [user, setUser] = useState()
   const navigate = useNavigate()
 
+  const [googleUser, setGoogleUser] = useState()
+
   // token hissesi
   const getAccessTokenFromMemory = () => {
     const token = secureLocalStorage.getItem('accessToken')
@@ -22,15 +24,23 @@ export const TokenManager = ({ children }) => {
     return tokenCompany
   }
 
+  const getAccessTokenFromMemoryGoogle = () => {
+    const tokenGoogle = secureLocalStorage.getItem('accessTokenGoogleUser')
+    return tokenGoogle
+  }
+
   //logout
   async function logOut() {
     secureLocalStorage.clear()
     localStorage.removeItem('user')
     localStorage.removeItem('userCompany')
+    localStorage.removeItem("googleUser")
     secureLocalStorage.removeItem('accessToken')
     secureLocalStorage.removeItem('accessTokenCompany')
+    secureLocalStorage.removeItem('accessTokenGoogleUser')
     setUser(null)
-    navigate('/signin')
+    setGoogleUser(null)
+    navigate('/')
   }
 
   // User Login
@@ -67,7 +77,36 @@ export const TokenManager = ({ children }) => {
       alert('Username or password is wrong')
     }
   }
-  
+
+  //Google User Login 
+  async function GoogleUserLogin(credentialResponse) {
+    const { credential } = credentialResponse;
+    const apiUrl = `${import.meta.env.VITE_HOST}/auth/google-signin`
+    try {
+
+      const res = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ token: credential }),
+      });
+
+      const data = await res.json();
+      if (data.token) {
+        localStorage.setItem('googleUser', JSON.stringify(data.user));
+        secureLocalStorage.setItem('accessTokenGoogleUser', data.token)
+        navigate('/'); 
+      } else {
+        console.log('Login Failed');
+      }
+    } catch (error) {
+      console.error('Error:', error)
+      alert('Login is failed')
+    }
+
+  }
+
   // Company Login
   async function CompanylogIn(user) {
     const apiUrl = `${import.meta.env.VITE_HOST}/auth/companyLogin`
@@ -109,10 +148,13 @@ export const TokenManager = ({ children }) => {
   let contextData = {
     getAccessTokenFromMemory: getAccessTokenFromMemory,
     getAccessTokenFromMemoryCompany: getAccessTokenFromMemoryCompany,
+    getAccessTokenFromMemoryGoogle: getAccessTokenFromMemoryGoogle,
     logIn: logIn,
     CompanylogIn: CompanylogIn,
+    GoogleUserLogin: GoogleUserLogin,
     logOut: logOut,
     user: user,
+    googleUser: googleUser,
   }
 
   return (

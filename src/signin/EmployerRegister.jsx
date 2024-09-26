@@ -6,7 +6,7 @@ import ViewEye from "../assets/icons/view.png";
 import HideEye from "../assets/icons/hide.png";
 import Loading from "../dashboard/Loading";
 
-function SignInRegister() {
+function EmployerRegister() {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({ email: "", password: "" });
     const [viewPass, setViewPass] = useState(false);
@@ -268,4 +268,4 @@ function SignInRegister() {
     );
 }
 
-export default SignInRegister
+export default EmployerRegister

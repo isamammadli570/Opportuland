@@ -18,9 +18,11 @@ import DataWebsite from './Company/DataWebsite';
 import AdminLayout from './layouts/admin';
 import { useState } from 'react';
 import ResponsiveNav from './dashboard/ResponsiveNav';
-import SignInRegister from './signin/SignInRegister';
-import LogInCombined from './signin/LogInCombined';
-import SignUpCombined from './signup/SignInCombined';
+import EmployerRegister from './signin/EmployerRegister';
+import ApplicantSignin from './signin/ApplicantSignin';
+import EmployerLogin from './signup/EmployerLogin';
+import SignIn from './signin/SignIn';
+import Signup from './signup/Signup';
 
 const MainApp = () => {
   const location = useLocation();
@@ -48,9 +50,12 @@ const MainApp = () => {
         <Route path='/contest/:subject/:id' element={<SingleJobContest />} />
         <Route path='/messages' element={<Messages />} />
         <Route path='/messages/:id' element={<ChatArea />} />
-        <Route path='/login' element={<LogInCombined />} />
-        <Route path='/signin' element={<SignUpCombined />} />
-        <Route path='/register' element={<SignInRegister />} />
+
+        <Route path='/user-login' element={<SignIn />} />
+        <Route path='/user-register' element={<Signup />} />
+        <Route path='/login' element={<EmployerLogin />} />
+        <Route path='/register' element={<EmployerRegister />} />
+        
         <Route path='/edit' element={<Edit />} />
         <Route path='/statistics' element={<Statistics />} />
         <Route path='/company' element={<CompanySignUp />} />

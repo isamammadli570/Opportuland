@@ -9,11 +9,12 @@ import Card from "../components/card";
 import { useDropzone } from "react-dropzone";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilePdf, faFileExcel, faFileImage, faFileAlt } from '@fortawesome/free-solid-svg-icons';
+import Modal from "../dashboard/Modal";
 
 const SingleJob = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const { getAccessTokenFromMemory } = useContext(AuthContext);
+  const { getAccessTokenFromMemory, getAccessTokenFromMemoryGoogle } = useContext(AuthContext);
 
   const [job, setJob] = useState(null);
   const [user, setUser] = useState({});
@@ -23,16 +24,38 @@ const SingleJob = () => {
   const [loading, setLoading] = useState(false);
   const [historyLog, setHistoryLog] = useState(null);
   const [userCheck, setUserCheck] = useState("");
+  const [googleUserCheck, setGoogleUserCheck] = useState("")
   const [files, setFiles] = useState([]);
 
   const { register, handleSubmit, formState: { errors } } = useForm();
 
+  const [modal, setModal] = useState(false)
+  const toggleModal = () => {
+    setModal(!modal)
+  }
+
   useEffect(() => {
     const userDataString = localStorage.getItem("user");
+
     if (userDataString) {
       try {
         const userData = JSON.parse(userDataString);
         setUserCheck(userData.username);
+      } catch (error) {
+        console.error("Error parsing user data:", error);
+      }
+    } else {
+      console.log("No user data found");
+    }
+  }, []);
+
+  useEffect(() => {
+    const googleUserDataString = localStorage.getItem("googleUser");
+
+    if (googleUserDataString) {
+      try {
+        const googleUserData = JSON.parse(googleUserDataString);
+        setGoogleUserCheck(googleUserData.name);
       } catch (error) {
         console.error("Error parsing user data:", error);
       }
@@ -54,7 +77,7 @@ const SingleJob = () => {
       }
 
       try {
-        const token = getAccessTokenFromMemory();
+        const token = getAccessTokenFromMemory() /* || getAccessTokenFromMemoryGoogle() */;
         const userResponse = await fetch(`${import.meta.env.VITE_HOST}/users/find`, {
           method: "GET",
           headers: {
@@ -65,7 +88,26 @@ const SingleJob = () => {
         if (userResponse.ok) {
           const data = await userResponse.json();
           setUser(data.user);
-        } else {
+        } else if (!token) {
+          try {
+            const token = getAccessTokenFromMemoryGoogle();
+            const userResponse = await fetch(`${import.meta.env.VITE_HOST}/users/findGoogle`, {
+              method: "GET",
+              headers: {
+                authorization: "Bearer " + token,
+              },
+            });
+            if (userResponse.ok) {
+              const data = await userResponse.json();
+              setUser(data.user);
+            } else {
+              throw new Error("Server responded with an error");
+            }
+          } catch (error) {
+            console.error("Error fetching user data:", error);
+          }
+        }
+        else {
           throw new Error("Server responded with an error");
         }
       } catch (error) {
@@ -73,23 +115,38 @@ const SingleJob = () => {
       }
 
       try {
-        const token = getAccessTokenFromMemory();
-        const historyResponse = await axios.get(
-          `${import.meta.env.VITE_HOST}/swipedHistory/getHistoryLog/?jobId=${id}`,
-          {
-            headers: {
-              authorization: "Bearer " + token,
-            },
-          }
-        );
-        setHistoryLog(historyResponse?.data?.swipeLog);
+        const token = getAccessTokenFromMemory() || getAccessTokenFromMemoryGoogle();
+        try {
+          const historyResponse = await axios.get(
+            `${import.meta.env.VITE_HOST}/swipedHistory/getHistoryLog/?jobId=${id}`,
+            {
+              headers: {
+                authorization: "Bearer " + token,
+              },
+            }
+          );
+          setHistoryLog(historyResponse?.data?.swipeLog);
+
+        } catch (error){
+          /* const token = getAccessTokenFromMemoryGoogle(); */
+          const historyResponse = await axios.get(
+            `${import.meta.env.VITE_HOST}/swipedHistory/getHistoryLogGoogle/?jobId=${id}`,
+            {
+              headers: {
+                authorization: "Bearer " + token,
+              },
+            }
+          );
+          setHistoryLog(historyResponse?.data?.swipeLog);
+        }
+
       } catch (error) {
         console.error("Error fetching history log:", error);
       }
     };
 
     fetchData();
-  }, [id, getAccessTokenFromMemory]);
+  }, [id, getAccessTokenFromMemory, getAccessTokenFromMemoryGoogle]);
 
   const handleApplyClick = async () => {
     if (job.applyLink && isValidUrl(job.applyLink)) {
@@ -102,7 +159,7 @@ const SingleJob = () => {
 
   const handleSend = async (data) => {
     setLoading(true);
-  
+
     try {
       const formData = new FormData();
       formData.append("message", data.message);
@@ -110,18 +167,18 @@ const SingleJob = () => {
       files.forEach(file => {
         formData.append("files", new Blob([Uint8Array.from(atob(file.file), c => c.charCodeAt(0))]), file.filename);
       });
-  
-      const token = getAccessTokenFromMemory();
+
+      const token = getAccessTokenFromMemory() || getAccessTokenFromMemoryGoogle();
       const response = await axios.post(
         `${import.meta.env.VITE_HOST}/contests/apply`,
         formData,
         { headers: { authorization: `Bearer ${token}` } }
       );
-  
+
       if (response.status === 201) {
-          setHistoryLog(true);
-          setApplyVisible(true);
-          setLoading(false);
+        setHistoryLog(true);
+        setApplyVisible(true);
+        setLoading(false);
       } else {
         setSuccessMessage("There was an issue with your application. Please try again.");
       }
@@ -316,6 +373,7 @@ const SingleJob = () => {
   };
 
   const formatText = (text) => {
+
     // First format URLs and then format bold text in each part
     return formatUrls(text).map((part, index) => {
       if (typeof part === 'string') {
@@ -337,6 +395,8 @@ const SingleJob = () => {
   if (!job) {
     return <div>Sorry, we can't find the job...</div>;
   }
+
+
 
   return (
     <div className="flex h-full w-full">
@@ -386,9 +446,9 @@ const SingleJob = () => {
                         <div {...getRootProps()} className={`border-dashed border-2 border-gray-400 p-6 text-center cursor-pointer transition bg-white dark:bg-zinc-800 ${isDragActive ? 'bg-gray-100 dark:bg-gray-700' : ''}`}>
                           <input {...getInputProps()} />
                           <div className="text-center">
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 mx-auto text-gray-400" viewBox="0 0 20 20" fill="currentColor">
-                                                        <path fillRule="evenodd" d="M3 3a2 2 0 012-2h10a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V3zm3 2a2 2 0 10-4 0v12a2 2 002 2h10a2 2 002-2V7h-2v8H6V5zM7 9h6v2H7V9z" clipRule="evenodd" />
-                                                    </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 mx-auto text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                              <path fillRule="evenodd" d="M3 3a2 2 0 012-2h10a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V3zm3 2a2 2 0 10-4 0v12a2 2 002 2h10a2 2 002-2V7h-2v8H6V5zM7 9h6v2H7V9z" clipRule="evenodd" />
+                            </svg>
                             <p className="mt-2 text-gray-600 dark:text-gray-400">Drag 'n' drop some files here, or click to select files</p>
                             <p className="mt-1 text-sm text-gray-500 dark:text-gray-500">Total file size limit is 50Mb</p>
                           </div>
@@ -413,7 +473,7 @@ const SingleJob = () => {
                       </div>
                       <button
                         type="submit"
-                        className="text-white w-36 px-3 py-2 rounded-sm bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-700">
+                        className="text-white w-36 px-3 py-2 rounded-sm bg-yellow-500 hover:bg-yellow-600">
                         Submit
                       </button>
                     </form>
@@ -422,32 +482,38 @@ const SingleJob = () => {
 
                 <div className="flex justify-center flex-col">
                   {applyVisible && !historyLog ? (
-                    userCheck ? (
+                    userCheck || googleUserCheck ? (
                       <button
                         onClick={() => handleApplyClick(user?.coverLetter)}
-                        className="text-white w-36 px-3 py-2 rounded-sm bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-700"
+                        className="text-white w-36 px-3 py-2 rounded-sm bg-yellow-500 hover:bg-yellow-600"
                       >
                         Apply
                       </button>
                     ) : (
-                      <Link
-                        to="/signin"
-                        className="text-white w-36 px-10 py-2 rounded-sm bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-700"
-                      >
-                        Apply
-                      </Link>
+                      <>
+                        <button
+                          onClick={toggleModal}
+                          className="text-white w-36 px-3 py-2 rounded-sm bg-yellow-500 hover:bg-yellow-600">
+                          Apply
+                        </button>
+                        {modal &&
+                          <div>
+                            <Modal toggleModal={toggleModal} />
+                          </div>
+                        }
+                      </>
                     )
                   ) : null}
                   {historyLog && (
                     <div
-                      className="w-full h-20 flex flex-col items-center justify-center bg-orange-500"
+                      className="w-full h-20 flex flex-col items-center justify-center bg-yellow-500"
                     >
                       <h2 className="text-lg font-semibold">You have submitted your solution.</h2>
                     </div>
                   )}
                   {successMessage && (
                     <div
-                      className="w-full h-20 flex flex-col items-center justify-center my-5 bg-orange-500"
+                      className="w-full h-20 flex flex-col items-center justify-center my-5 bg-yellow-500"
                     >
                       {successMessage}
                     </div>

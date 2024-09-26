@@ -66,14 +66,14 @@ export default function PdfUpload({
             <h3 className='text-center sm:text-start w-fit text-3xl lg:text-[40px] bg-[#a37bfd]font-medium pb-2 md:px-12 mb-4 font-bold text-black/70'>
             Upload Your Resume
             </h3>
-            <div className="h-[300px] w-[300px] border-2 border-dashed border-orange-500 rounded-xl mt-8 flex flex-col items-center justify-center">
+            <div className="h-[300px] w-[300px] border-2 border-dashed border-yellow-500 rounded-xl mt-8 flex flex-col items-center justify-center">
                 <div className="w-full absolute flex flex-col items-center pointer-events-none">
                     <img className="w-32 h-32 pb-12" src={logo} alt="pdfLogo.svg" />
                     <div className="w-72 flex-wrap mb-12">
-                        <p className="text-orange-500 text-xs text-center font-light mb-1">
+                        <p className="text-yellow-500 text-xs text-center font-light mb-1">
                             - For better performance upload CV in English
                         </p>
-                        <p className="text-orange-500 text-xs text-center font-light">
+                        <p className="text-yellow-500 text-xs text-center font-light">
                             - Please do not upload picture pdfs (if you can select the text in your resume it is good)
                         </p>
                     </div>
@@ -82,7 +82,7 @@ export default function PdfUpload({
                     onChange={pickAndConvert}
                     className="hover:cursor-pointer w-full h-full pt-60 pl-4 file:mr-12 file:py-2 file:px-4 
                     file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50
-                    file:text-orange-500 hover:file:bg-orange-100 hover:file:cursor-pointer mb-5"
+                    file:text-yellow-500 hover:file:bg-yellow-100 hover:file:cursor-pointer mb-5"
                     type="file"
                     accept=".pdf"
                     id="file"
@@ -92,7 +92,7 @@ export default function PdfUpload({
             <button
                 onClick={handleNextStep}
                 id="btn"
-                className="mb-5 bg-orange-500 hover:bg-orange-600 transition-all max-w-[400px] w-full md:w-fit flex items-center justify-center sm:block py-3.5 sm:px-32 text-white rounded-full mt-8 hover:cursor-pointer"
+                className="mb-5 bg-yellow-500 hover:bg-yellow-600 transition-all max-w-[400px] w-full md:w-fit flex items-center justify-center sm:block py-3.5 sm:px-32 text-white rounded-full mt-8 hover:cursor-pointer"
             >
                 {loading ? "Loading..." : "Next Step"}
             </button>

@@ -29,7 +29,7 @@ const SignIn = () => {
 
   return (
     <div className="flex h-full w-full">
-      <div className="h-full w-full bg-lightPrimary dark:!bg-navy-900">
+      <div className="h-full w-full bg-lightPrimary dark:!bg-navy-900 duration-200">
         <main
           className={`mx-[12px] h-full flex-none transition-all md:pr-2`}
         >
@@ -40,7 +40,7 @@ const SignIn = () => {
                   onClick={(e) => {
                     e.stopPropagation()
                   }}
-                  className='relative my-8 max-w-[600px] w-full h-full sm:h-fit flex flex-col items-center py-5 px-4 sm:p-12 shadow-md border bg-white sm:rounded-xl gap-x-12 lg:gap-x-32 gap-y-6 sm:gap-y-10'
+                  className='dark:!bg-zinc-800 dark:text-white dark:border-none relative my-8 max-w-[600px] w-full h-full sm:h-fit flex flex-col items-center py-5 mt-16 px-4 sm:p-12 shadow-md border bg-white sm:rounded-xl gap-x-12 lg:gap-x-32 gap-y-6 sm:gap-y-10'
                 >
                   <button
                     onClick={() => {
@@ -48,13 +48,8 @@ const SignIn = () => {
                     }}
                     className='absolute right-4 top-4'
                   >
-                    {/* <imgx
-              className='w-10 h-10 text-orange-500'
-              src={Close}
-              alt='closeIcon.svg'
-            /> */}
                   </button>
-                  <h3 className='text-center sm:text-start w-fit text-3xl lg:text-[40px] bg-[#a37bfd]font-medium pb-2 md:px-12 mb-4 font-bold text-black/70'>
+                  <h3 className='text-center sm:text-start w-fit text-3xl lg:text-[40px] bg-[#a37bfd]font-medium pb-2 md:px-12 mb-4 text-black/70'>
                     Applicant Sign In
                   </h3>
 
@@ -67,7 +62,7 @@ const SignIn = () => {
                     <div className='grid w-full grid-cols-1'>
                       <div className='flex flex-col w-full'>
                         <label
-                          className='text-lg text-black/70 font-bold mb-1'
+                          className='text-lg text-black/70 mb-1'
                           htmlFor='email'
                         >
                           Username
@@ -75,7 +70,7 @@ const SignIn = () => {
 
                         <input
                           placeholder='username'
-                          className='focus:outline-0 p-4 rounded-lg border placeholder-orange-600/60 border-[#D9D9D9] bg-[#F9F9F9] '
+                          className='focus:outline-0 p-4 rounded-lg border placeholder-yellow-600/60 border-[#D9D9D9] bg-[#F9F9F9] '
                           type='email'
                           name='email'
                           onKeyDown={(e) => {
@@ -89,7 +84,7 @@ const SignIn = () => {
 
                       <div className='flex flex-col w-full mt-8'>
                         <label
-                          className='text-lg text-black/70 font-bold mb-1'
+                          className='text-lg text-black/70 mb-1'
                           htmlFor='password'
                         >
                           Password
@@ -120,9 +115,9 @@ const SignIn = () => {
                       </div>
                       <button
                         onClick={() => {
-                          navigate('/signup')
+                          navigate('/user-register')
                         }}
-                        className='text-orange-500 mt-4 text-start w-fit'
+                        className='text-yellow-500 mt-4 text-start w-fit'
                       >
                         Don&apos;t have an account?
                       </button>
@@ -131,7 +126,7 @@ const SignIn = () => {
 
 
                     <input
-                      className='justify-self-center w-full flex items-center justify-center sm:block  bg-orange-500 hover:bg-orange-600 py-3.5 px-32 text-white rounded-lg mt-8 sm:mt-10 hover:cursor-pointer'
+                      className='justify-self-center w-full flex items-center justify-center sm:block  bg-yellow-500 hover:bg-yellow-600 py-3.5 px-32 text-white rounded-lg mt-8 sm:mt-10 hover:cursor-pointer'
                       type='submit'
                       value='Sign In'
                       onClick={(e) => {

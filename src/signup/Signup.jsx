@@ -87,7 +87,7 @@ export default function Signup() {
     try {
       const formData = new FormData();
       formData.append("file", data, resumeName);
-     
+
 
       const response = await fetch(
         `${import.meta.env.VITE_HOST}/resume/upload`,
@@ -130,8 +130,8 @@ export default function Signup() {
         const result = await response.json();
 
         console.log(result)
-        const {text} = result
-        const aiText= text?.aiText
+        const { text } = result
+        const aiText = text?.aiText
         setResumeData(text);
 
         return JSON.parse(aiText?.content);
@@ -226,7 +226,7 @@ export default function Signup() {
     try {
       const res = await sendPdfToBackend(data, resumeName);
       if (res != null) {
-         console.log('signup resume', res)
+        console.log('signup resume', res)
         setFormData(res);
         return res;
       }
@@ -295,40 +295,45 @@ export default function Signup() {
   };
 
   return (
-    
+
     <div className="flex h-full w-full">
-    <div className="h-full w-full bg-lightPrimary dark:!bg-navy-900">
-      <main
-        className={`mx-[12px] h-full flex-none transition-all md:pr-2`}
-      >
-        <div className="h-full">
-        <div className="w-full min-h-screen flex items-center justify-center">
-      <div className="w-full h-full relative flex justify-center items-center">
-        <div  className="relative my-8 max-w-[600px] w-full h-full sm:h-fit flex flex-col items-center py-5 px-4 sm:p-12 shadow-md border bg-white sm:rounded-xl gap-x-12 lg:gap-x-32 gap-y-6 sm:gap-y-10">
+      <div className="h-full w-full bg-lightPrimary dark:!bg-navy-900">
+        <main
+          className={`mx-[12px] h-full flex-none transition-all md:pr-2`}
+        >
+          <div className="h-full">
+            <div className="w-full min-h-screen flex items-center justify-center">
+              <div className="w-full h-full relative flex justify-center items-center">
+                <div className="relative my-8 max-w-[600px] w-full h-full sm:h-fit flex flex-col items-center py-5 px-4 sm:p-12 shadow-md border bg-white sm:rounded-xl gap-x-12 lg:gap-x-32 gap-y-6 sm:gap-y-10">
 
-      {step === 1 && (
-        <PdfUpload
-          setStep={setStep}
-          data={data}
-          setData={setData}
-          resumeName={resumeName}
-          setResumeName={setResumeName}
-          ResumeConvertText={ResumeConvertText}
-        />
-      )}
+                  {step === 1 && (
+                    <PdfUpload
+                      setStep={setStep}
+                      data={data}
+                      setData={setData}
+                      resumeName={resumeName}
+                      setResumeName={setResumeName}
+                      ResumeConvertText={ResumeConvertText}
+                    />
+                  )}
 
-      {step === 2 && (
-        <Form
-          formData={formData}
-          onFormChange={onFormChange}
-          handleCompanyNames={handleCompanyNames}
-          handleSignUp={handleSignUp}
-          yearsOptions={yearsOptions}
-          countryList={countryList}
-          loading={loading}
-        />
-      )}
-    </div></div></div>
-    </div></main></div></div>
+                  {step === 2 && (
+                    <Form
+                      formData={formData}
+                      onFormChange={onFormChange}
+                      handleCompanyNames={handleCompanyNames}
+                      handleSignUp={handleSignUp}
+                      yearsOptions={yearsOptions}
+                      countryList={countryList}
+                      loading={loading}
+                    />
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
   );
 }

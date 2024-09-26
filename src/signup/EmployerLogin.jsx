@@ -8,7 +8,7 @@ import ViewEye from "../assets/icons/view.png";
 import HideEye from "../assets/icons/hide.png";
 
 
-const SignInCombined = () => {
+const EmployerLogin = () => {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({})
   const [viewPass, setViewPass] = useState(false)
@@ -79,7 +79,7 @@ const SignInCombined = () => {
                   </button>
                   <h3 className='text-center sm:text-start w-fit text-3xl lg:text-[40px] bg-[#a37bfd]font-medium pb-2 md:px-12 mb-4 text-black/70'>
                     Employer Log In
-                  </h3>x
+                  </h3>
 
                   <form
                     className='w-full flex flex-col items-center'
@@ -174,4 +174,4 @@ const SignInCombined = () => {
   )
 };
 
-export default SignInCombined;
+export default EmployerLogin;

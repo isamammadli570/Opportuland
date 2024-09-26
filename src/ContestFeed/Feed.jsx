@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Loading from '../dashboard/Loading';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,12 +13,13 @@ import {
   AccordionPanel,
   AccordionIcon,
 } from "@chakra-ui/accordion"
+import Modal from '../dashboard/Modal';
 
 const dummyToken = "asd";
 
 const Feed = () => {
   const { submissionId } = useParams();
-  const { getAccessTokenFromMemory, getAccessTokenFromMemoryCompany } = useContext(AuthContext);
+  const { getAccessTokenFromMemory, getAccessTokenFromMemoryCompany, getAccessTokenFromMemoryGoogle } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
   const [submissions, setSubmissions] = useState([]);
   const [mediaIndices, setMediaIndices] = useState({});
@@ -27,6 +28,44 @@ const Feed = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
   const pageRef = useRef(1);
+
+  const [userCheck, setUserCheck] = useState("");
+  const [googleUserCheck, setGoogleUserCheck] = useState("")
+
+  const [modal, setModal] = useState(false)
+  const toggleModal = () => {
+    setModal(!modal)
+  }
+
+  useEffect(() => {
+    const userDataString = localStorage.getItem("user");
+
+    if (userDataString) {
+      try {
+        const userData = JSON.parse(userDataString);
+        setUserCheck(userData);
+      } catch (error) {
+        console.error("Error parsing user data:", error);
+      }
+    } else {
+      console.log("No user data found");
+    }
+  }, []);
+
+  useEffect(() => {
+    const googleUserDataString = localStorage.getItem("googleUser");
+
+    if (googleUserDataString) {
+      try {
+        const googleUserData = JSON.parse(googleUserDataString);
+        setGoogleUserCheck(googleUserData);
+      } catch (error) {
+        console.error("Error parsing user data:", error);
+      }
+    } else {
+      console.log("No user data found");
+    }
+  }, []);
 
   const fetchSubmissions = async (page) => {
     setLoading(true);
@@ -106,7 +145,7 @@ const Feed = () => {
   };
 
   const fetchUserVotes = async (itemIds) => {
-    const token = getAccessTokenFromMemory() || getAccessTokenFromMemoryCompany();
+    const token = getAccessTokenFromMemory() || getAccessTokenFromMemoryCompany() || getAccessTokenFromMemoryGoogle();
     if (token) {
       try {
         const voteResponse = await axios.post(
@@ -129,7 +168,7 @@ const Feed = () => {
 
   useEffect(() => {
     fetchSubmissions(pageRef.current);
-  }, [submissionId, getAccessTokenFromMemory, getAccessTokenFromMemoryCompany]);
+  }, [submissionId, getAccessTokenFromMemory, getAccessTokenFromMemoryCompany, getAccessTokenFromMemoryGoogle]);
 
   const handleNextMedia = (submissionIndex) => {
     setMediaIndices((prevIndices) => ({
@@ -152,12 +191,14 @@ const Feed = () => {
     }));
   };
 
+  /* const navigate = useNavigate(); */
   const handleVote = async (submissionId) => {
-    const token = getAccessTokenFromMemory() || getAccessTokenFromMemoryCompany();
-    if (!token) {
+
+    const token = getAccessTokenFromMemory() || getAccessTokenFromMemoryCompany() || getAccessTokenFromMemoryGoogle();
+    /* if (!token) {
       alert('Please log in to vote');
-      return;
-    }
+      navigate("/user-login")
+    } */
 
     try {
       console.log(`Handling vote for submission ID: ${submissionId}`);
@@ -245,7 +286,7 @@ const Feed = () => {
         pageButtons.push(
           <button
             key={i}
-            className={`px-4 py-2 ${currentPage === i ? 'bg-blue-500 text-white' : 'bg-gray-300 text-black'}`}
+            className={`px-4 py-2 ${currentPage === i ? 'bg-yellow-500 text-white' : 'bg-navy-300 text-black'}`}
             onClick={() => handlePageChange(i)}
           >
             {i}
@@ -268,7 +309,7 @@ const Feed = () => {
         pageButtons.push(
           <button
             key={1}
-            className={`px-4 py-2 ${currentPage === 1 ? 'bg-blue-500 text-white' : 'bg-gray-300 text-black'}`}
+            className={`px-4 py-2 ${currentPage === 1 ? 'bg-blue-500 text-white' : 'bg-navy-300 text-black'}`}
             onClick={() => handlePageChange(1)}
           >
             1
@@ -283,7 +324,7 @@ const Feed = () => {
         pageButtons.push(
           <button
             key={i}
-            className={`px-4 py-2 ${currentPage === i ? 'bg-blue-500 text-white' : 'bg-gray-300 text-black'}`}
+            className={`px-4 py-2 ${currentPage === i ? 'bg-blue-500 text-white' : 'bg-navy-300 text-black'}`}
             onClick={() => handlePageChange(i)}
           >
             {i}
@@ -298,7 +339,7 @@ const Feed = () => {
         pageButtons.push(
           <button
             key={totalPages}
-            className={`px-4 py-2 ${currentPage === totalPages ? 'bg-blue-500 text-white' : 'bg-gray-300 text-black'}`}
+            className={`px-4 py-2 ${currentPage === totalPages ? 'bg-blue-500 text-white' : 'bg-navy-300 text-black'}`}
             onClick={() => handlePageChange(totalPages)}
           >
             {totalPages}
@@ -312,7 +353,7 @@ const Feed = () => {
 
   return (
     <div className="flex h-full w-full">
-      <div className="h-full w-full bg-lightPrimary dark:bg-zinc-900 duration-200">
+      <div className="h-full w-full bg-lightPrimary dark:bg-navy-900 duration-200">
         <main className="mx-[12px] h-full flex-none transition-all md:pr-2">
           <div className="h-full">
             <div className="min-h-screen w-full relative">
@@ -326,25 +367,27 @@ const Feed = () => {
                   const cleanJobName = submission.contestName?.replace(/[/\\]/g, '');
 
                   return (
-                    <div key={submissionIndex} className="bg-white md:w-full  dark:bg-zinc-700 duration-200 shadow rounded-lg p-6 mb-4 ml-6">
+                    <div
+                      key={submissionIndex}
+                      className="bg-white dark:bg-navy-700 duration-200 shadow rounded-lg p-6 mb-4 ml-6">
                       <div className="flex items-center mb-2">
-                        <h2 className="md:text-xl font-bold text-gray-900 dark:text-white">{formatFullname(submission.fullname)}</h2>
+                        <h2 className="md:text-xl font-bold text-navy-900 dark:text-white">{formatFullname(submission.fullname)}</h2>
                         {submission.userLinkedIn && (
-                          <a href={submission.userLinkedIn} target="_blank" rel="noopener noreferrer" className="ml-2 text-base font-medium text-gray-600 hover:text-gray-600">
+                          <a href={submission.userLinkedIn} target="_blank" rel="noopener noreferrer" className="ml-2 text-base font-medium dark:text-zinc-300 text-zinc-600">
                             <svg className="w-5 h-5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                               <path d="M19 0h-14c-2.762 0-5 2.238-5 5v14c0 2.762 2.238 5 5 5h14c2.762 0 5-2.238 5-5v-14c0-2.762-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.792-1.75-1.767s.784-1.767 1.75-1.767 1.75.792 1.75 1.767-.784 1.767-1.75 1.767zm13.5 12.268h-3v-5.5c0-1.379-1.121-2.5-2.5-2.5s-2.5 1.121-2.5 2.5v5.5h-3v-11h3v1.643c.825-.89 2.021-1.643 3.5-1.643 2.481 0 4.5 2.019 4.5 4.5v6.5z" />
                             </svg>
                           </a>
                         )}
-                        <span className="mx-2 text-gray-500 dark:text-gray-300">|</span>
-                        <span className="text-gray-900 text-sm  dark:text-white">{submission.companyName}</span>
-                        <span className="mx-1 text-gray-500 dark:text-gray-300">•</span>
+                        <span className="mx-2 text-navy-500 dark:text-navy-300">|</span>
+                        <span className="text-navy-900 text-sm  dark:text-white">{submission.companyName}</span>
+                        <span className="mx-1 text-navy-500 dark:text-navy-300">•</span>
                         <a href={`/contest/${cleanJobName}/${submission.jobId}`} className="text-blue-500 text-sm">{cleanJobName}</a>
                       </div>
 
-                      <div className="flex mt-4">
-                        <div className="flex-grow">
-                          {/* <div className="text-gray-700 dark:text-gray-300 duration-200">
+                      <div className="flex flex-row justify-between mt-4">
+                        <div>
+                          {/* <div className="text-navy-700 dark:text-navy-300 duration-200">
                             {expandedMessages[submissionIndex] ? (
                               <>
                                 {submission.message.split('\n').map((paragraph, index) => (
@@ -377,7 +420,7 @@ const Feed = () => {
                             )}
                           </div> */}
 
-                          <Accordion allowToggle>
+                          <Accordion className='dark:text-white' allowToggle>
                             <AccordionItem>
                               <h2>
                                 <AccordionButton>
@@ -390,7 +433,10 @@ const Feed = () => {
                               <AccordionPanel pb={4}>
                                 {submission.message.split('\n').map((paragraph, index) => (
                                   <React.Fragment key={index}>
-                                    {renderMessageWithLinks(paragraph)}
+                                    <div className='md:w-full w-52'>
+
+                                      {renderMessageWithLinks(paragraph)}
+                                    </div>
                                     <br />
                                   </React.Fragment>
                                 ))}
@@ -400,30 +446,33 @@ const Feed = () => {
 
                           {submission.files && submission.files.length > 0 && (
                             <div className="mt-4">
-                              <div className="relative" style={{ width: '600px', height: '300px' }}>
+                              <div className="relative w-full max-w-lg h-96" >
                                 {submission.files[mediaIndices[submissionIndex]] && (
                                   <>
                                     {submission.files[mediaIndices[submissionIndex]].filename.endsWith('.jpg') ||
                                       submission.files[mediaIndices[submissionIndex]].filename.endsWith('.jpeg') ||
                                       submission.files[mediaIndices[submissionIndex]].filename.endsWith('.png') ||
                                       submission.files[mediaIndices[submissionIndex]].filename.endsWith('.gif') ? (
-                                      <img src={submission.files[mediaIndices[submissionIndex]].url} alt="Media file" className="rounded-lg" style={{ maxWidth: '100%', maxHeight: '100%', display: 'block', margin: '0 auto' }} />
+                                      <img
+                                        src={submission.files[mediaIndices[submissionIndex]].url}
+                                        alt="Media file"
+                                        className="rounded-lg object-contain w-full h-full" />
                                     ) : submission.files[mediaIndices[submissionIndex]].filename.endsWith('.mp4') ? (
-                                      <video controls className="rounded-lg" style={{ maxWidth: '100%', maxHeight: '100%', display: 'block', margin: '0 auto' }}>
+                                      <video controls className="rounded-lg object-contain w-full h-full">
                                         <source src={submission.files[mediaIndices[submissionIndex]].url} type="video/mp4" />
                                       </video>
                                     ) : null}
                                     {submission.files.length > 1 && (
                                       <>
-                                        <button onClick={() => handlePreviousMedia(submissionIndex)} className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full">
+                                        <button onClick={() => handlePreviousMedia(submissionIndex)} className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-navy-800 text-white p-2 rounded-full">
                                           <FontAwesomeIcon icon={faArrowLeft} />
                                         </button>
-                                        <button onClick={() => handleNextMedia(submissionIndex)} className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full">
+                                        <button onClick={() => handleNextMedia(submissionIndex)} className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-navy-800 text-white p-2 rounded-full">
                                           <FontAwesomeIcon icon={faArrowRight} />
                                         </button>
                                       </>
                                     )}
-                                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white p-1 rounded">
+                                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 bg-navy-800 text-white p-1 rounded">
                                       {mediaIndices[submissionIndex] + 1} / {submission.files.length}
                                     </div>
                                   </>
@@ -433,19 +482,38 @@ const Feed = () => {
                           )}
                         </div>
 
-                        <div className="flex flex-col items-center ml-4">
+                        <div className="flex flex-col items-center md:ml-4 mt-4 md:mt-0 ">
+
+                          {userCheck || googleUserCheck ? (
+                            <button
+                              className={`rounded  py-2 px-4 transition duration-200 ease-in-out border ${userVotes[submission._id] ? 'bg-yellow-500 text-white' : 'bg-zinc-100 text-zinc-500 dark:bg-zinc-300 dark:border-zinc-600'} hover:bg-yellow-500 hover:text-white`}
+                              onClick={() => handleVote(submission._id)}
+                            >
+                              <FontAwesomeIcon icon={faCaretUp} className="md:w-6 " />
+                              <span className="block mt-1 text-sm">{submission.upvoteCount}</span>
+                            </button>
+                          ) : (
+                            <>
+                              <button
+                                className={`rounded  py-2 px-4 transition duration-200 ease-in-out border ${userVotes[submission._id] ? 'bg-yellow-500 text-white' : 'bg-zinc-100 text-zinc-500 dark:bg-zinc-300 dark:border-zinc-600'} hover:bg-yellow-500 hover:text-white`}
+                                onClick={toggleModal}
+                              >
+                                <FontAwesomeIcon icon={faCaretUp} className="md:w-6 " />
+                                <span className="block mt-1 text-sm">{submission.upvoteCount}</span>
+                              </button>
+                              {modal &&
+                                <div>
+                                  <Modal toggleModal={toggleModal} />
+                                </div>
+                              }
+                            </>
+
+                          )}
                           <button
-                            className={`rounded py-2 px-4 transition duration-200 ease-in-out border ${userVotes[submission._id] ? 'bg-yellow-500 text-white' : 'bg-gray-100 text-gray-500 dark:bg-gray-700 dark:border-gray-600'} hover:bg-yellow-500 hover:text-white`}
-                            onClick={() => handleVote(submission._id)}
-                          >
-                            <FontAwesomeIcon icon={faCaretUp} className="w-6 h-6" />
-                            <span className="block mt-1 text-sm">{submission.upvoteCount}</span>
-                          </button>
-                          <button
-                            className="rounded py-2 px-4 mt-2 h-[47px] transition duration-200 ease-in-out border bg-gray-100 text-gray-500 dark:bg-gray-700 dark:border-gray-600 hover:bg-gray-200 dark:hover:bg-gray-600"
+                            className="rounded py-2 px-4 mt-2 lg:h-[47px] transition duration-200 ease-in-out border bg-zinc-100 text-zinc-500 dark:bg-zinc-300 dark:border-zinc-600 hover:bg-zinc-200 dark:hover:bg-zinc-600"
                             onClick={() => copyLinkToClipboard(submission._id)}
                           >
-                            <FontAwesomeIcon icon={faLink} className="w-6 h-6" />
+                            <FontAwesomeIcon icon={faLink} className="md:w-6 " />
                           </button>
                         </div>
                       </div>
@@ -456,7 +524,7 @@ const Feed = () => {
               <div className="flex justify-center mt-4">
                 {generatePageButtons()}
               </div>
-              {loading && <Loading />}
+
             </div>
           </div>
         </main>
