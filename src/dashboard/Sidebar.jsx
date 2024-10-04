@@ -7,6 +7,7 @@ import { theme } from "../theme/theme";
 import { HiBars3 } from "react-icons/hi2";
 import Theme from "./Theme";
 import { AiOutlineCaretDown, AiOutlineCaretUp, AiOutlineCheckSquare } from "react-icons/ai";
+import { FaCaretDown } from "react-icons/fa";
 
 const Sidebar = ({ isOpen, setIsOpen }) => {
   const [hamburgerMenuOpen, setHamburgerMenuOpen] = useState(false);
@@ -48,7 +49,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
   }, []);
 
   useEffect(() => {
-    if (!user || googleUser && ["/", "/contest", "/statistics", "/messages", "/signin"].includes(location.pathname)) {
+    if (!user || googleUser && ["/", "/contest", "/statistics", "/messages", "/user-login"].includes(location.pathname)) {
       setSelectedItem("Get Started");
     }
   }, [location.pathname, user, googleUser]);
@@ -70,9 +71,13 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
 
 
   const handleNavigateLogIn = () => {
-    navigate("/applicant-signin")
+    navigate("/user-login")
   }
 
+  const logOutCombined = () => {
+    logOut()
+    
+  }
   return (
     <div className="h-full w-full bg-lightPrimary dark:!bg-navy-900 duration-200">
       <main className={`mx-[12px] h-full flex-none transition-all md:pr-2`}>
@@ -93,7 +98,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                   <span className="font-medium">Opportu</span> <p>Land</p> </Link>
               </div>
               {/* theme hissesi */}
-              <div >
+              <div className="md:flex hidden">
                 <Theme />
               </div>
             </div>
@@ -105,7 +110,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
 
                   <ul className="flex items-center md:space-x-8 md:ml-10 ">
 
-                    <li className="lg:flex hidden">
+                    {/* <li className="lg:flex hidden">
                       <Link
                         to="/"
                         className={`text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/") ? "text-yellow-500" : "text-navy-700 dark:text-white"
@@ -122,11 +127,11 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                       >
                         Contests
                       </Link>
-                    </li>
+                    </li> */}
 
                     <li className="lg:flex hidden">
                       <Link
-                        to="/remote"
+                        to="/remote?page=1"
                         className={`text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/remote") ? "text-yellow-500" : "text-navy-700 dark:text-white"
                           } hover:text-yellow-500 dark:hover:text-yellow-500`}
                       >
@@ -197,7 +202,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                                 </Menu.Item>
                                 <Menu.Item style={{ background: theme.dark, color: theme.white }}>
                                   <Link
-                                    to="applicant-signin"
+                                    to="/"
                                     className="text-gray-700 block px-4 py-2 text-sm text-bold"
                                     onClick={logOut}
                                   >
@@ -233,7 +238,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                       <>
                         {/* button hissesi */}
                         <div className="flex gap-3 px-2">
-                          <button
+                          {/* <button
                             onClick={() => setIsOpenMenuUser((prev) => !prev)}
                             className="flex justify-center items-center md:px-4 md:py-1.5 border-2 border-yellow-400 text-yellow-500  rounded-md hover:bg-yellow-400 duration-200 hover:text-white">
                             <div className="flex gap-1">
@@ -256,9 +261,9 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                                 </p>
                               </div>
                             )}
-                          </button>
+                          </button> */}
 
-                          <button
+                          {/* <button
                             onClick={() => setIsOpenMenu((prev) => !prev)}
                             className="flex justify-center items-center p-2 bg-yellow-400 text-black rounded-md text-zinc-700 hover:bg-yellow-500 hover:text-white duration-200 focus:outline-none">
                             <div className="flex gap-1">
@@ -286,7 +291,64 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                                 </p>
                               </div>
                             )}
-                          </button>
+                          </button> */}
+
+                          <div className="group relative cursor-pointer md:px-4 md:py-1.5 border-2 border-yellow-400 text-yellow-500 rounded-md hover:bg-yellow-400 hover:text-white duration-200 ">
+                            <div className="flex gap-1 ">
+                              <p>Log</p>
+                              <p>in</p>
+                            </div>
+                            {/* acılan linkler */}
+                            <div className="absolute shadow-md -left-9 z-[10] hidden group-hover:block text-black bg-white dark:bg-navy-900 p-2">
+                              <div className="">
+                                <li>
+                                  <p
+                                    onClick={handleNavigateStartUser}
+                                    className="inline-block w-full rounded-md p-2 hover:bg-primary/20 text-zinc-700 dark:text-zinc-300"
+                                  >
+                                    Log in
+                                  </p>
+                                  <p
+                                    onClick={handleNavigateStartRegisterUser}
+                                    className="inline-block w-full rounded-md p-2 hover:bg-primary/20 text-zinc-700 dark:text-zinc-300"
+                                  >
+                                    Register
+                                  </p>
+                                </li>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="group relative cursor-pointer p-2 bg-yellow-400 text-black rounded-md hover:bg-yellow-500  duration-200 focus:outline-none ">
+                            <div className="flex gap-1">
+                              <p>For</p>
+                              <p>Employer</p>
+                              <span className="transition duration-200 group-hover:rotate-180">
+                                <FaCaretDown />
+                              </span>
+                            </div>
+                            {/* acılan linkler */}
+                            <div className="absolute shadow-md -left-9 z-[10] hidden group-hover:block text-black bg-white dark:bg-navy-900 p-2">
+                              <div >
+                                <li>
+                                  <p
+                                    onClick={handleNavigateStart}
+                                    className="inline-block w-full rounded-md p-2 hover:bg-primary/20 text-zinc-700 dark:text-zinc-300"
+                                  >
+                                    Log in
+                                  </p>
+                                  <p
+                                    onClick={handleNavigateStartRegister}
+                                    className="inline-block w-full rounded-md p-2 hover:bg-primary/20 text-zinc-700 dark:text-zinc-300"
+                                  >
+                                    Register
+                                  </p>
+                                </li>
+                              </div>
+                            </div>
+                          </div>
+
+
                         </div>
                       </>
                     )}

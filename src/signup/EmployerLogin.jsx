@@ -57,7 +57,7 @@ const EmployerLogin = () => {
   // );
   return (
     <div className="flex h-full w-full">
-      <div className="h-full w-full bg-lightPrimary dark:!bg-zinc-900 duration-200">
+      <div className="h-full w-full bg-lightPrimary dark:!bg-navy-900 duration-200">
         <main
           className={`mx-[12px] h-full flex-none transition-all md:pr-2`}
         >
@@ -68,7 +68,7 @@ const EmployerLogin = () => {
                   onClick={(e) => {
                     e.stopPropagation()
                   }}
-                  className='dark:!bg-zinc-800 dark:text-white dark:border-none relative my-8 max-w-[600px] mt-28 w-full h-full sm:h-fit flex flex-col items-center py-5 px-4 sm:p-12 shadow-md border bg-white sm:rounded-xl gap-x-12 lg:gap-x-32 gap-y-6 sm:gap-y-10'
+                  className='dark:!bg-navy-800 dark:text-white dark:border-none relative my-8 max-w-[600px] mt-28 w-full h-full sm:h-fit flex flex-col items-center py-5 px-4 sm:p-12 shadow-md border bg-white sm:rounded-xl gap-x-12 lg:gap-x-32 gap-y-6 sm:gap-y-10'
                 >
                   <button
                     onClick={() => {

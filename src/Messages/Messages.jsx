@@ -197,7 +197,7 @@ const Messages = () => {
 
   return (
     <div className="flex h-full w-full">
-    <div className="h-full w-full bg-lightPrimary dark:!bg-zinc-900 duration-200" >
+    <div className="h-full w-full bg-lightPrimary dark:!bg-navy-900 duration-200" >
       <main
         className={`mx-[12px] h-full flex-none transition-all md:pr-2`}
       >
@@ -240,7 +240,7 @@ const Messages = () => {
                 <div
                   key={key}
                   onClick={() => handlePress(mess)}
-                  className={`${mess?.read ? '' : 'bg-zinc-200'} m-2 `}
+                  className={`${mess?.read ? '' : 'bg-navy-200'} m-2 `}
                 >
                   <div className='w-[80%] m-auto flex items-center'>
                     <div className='flex w-[800px]  p-4 m-h-[20px] border-b border-gray cursor-pointer'>

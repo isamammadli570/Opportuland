@@ -36,8 +36,8 @@ const MainApp = () => {
       <div
         className={
           isOpen
-            ? "fixed top-0 right-0 w-[300px] h-full bg-lightPrimary dark:!bg-zinc-900 z-40 duration-200"
-            : "fixed top-0 right-[-100%] w-[300px] h-full bg-lightPrimary dark:!bg-zinc-900 z-10 duration-200"
+            ? "fixed top-0 right-0 w-[300px] h-full bg-lightPrimary dark:!bg-navy-900 z-40 duration-200"
+            : "fixed top-0 right-[-100%] w-[300px] h-full bg-lightPrimary dark:!bg-navy-900 z-10 duration-200"
         }
       >
         {isOpen && <ResponsiveNav setIsOpen={setIsOpen} />}

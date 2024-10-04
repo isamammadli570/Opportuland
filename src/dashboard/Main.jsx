@@ -2,20 +2,33 @@ import { useState, useEffect } from 'react'
 import Table from './Table'
 import Search from './Search'
 import Loading from './Loading'  // Import the Loading component
-
-
-import React from "react";
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
-import Footer from "../components/footer/Footer";
-
+import { useSearchParams } from 'react-router-dom'
 
 export default function Main() {
   const [isOpen, setIsOpen] = useState(false)
   const [jobData, setJobData] = useState([])
   const [loading, setLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState('')
-  const [currentPage, setCurrentPage] = useState()
+  /* const [currentPage, setCurrentPage] = useState() */
   const [totalPages, setTotalPages] = useState()
+  
+  const [currentPage, setCurrentPage] = useState(1) 
+  const [searchParams, setSearchParams] = useSearchParams(); 
+
+  const currentPageFromURL = Number(searchParams.get("page")) || 1;
+  
+  useEffect(() => {
+    const page = searchParams.get('page') || 1; 
+    setCurrentPage(parseInt(page)); 
+  }, [searchParams]);
+
+  
+  const onPageChange = (selectedPage) => {
+
+    const page = selectedPage.selected + 1; // Selected page number
+    setSearchParams({ page }); // Update URL with new page
+    getJobsData(searchQuery, page); 
+  };
 
   const openPopup = () => {
     setIsOpen(true)
@@ -23,11 +36,11 @@ export default function Main() {
   const closePopup = () => {
     setIsOpen(false)
   }
-  const getJobsData = async (searchText, page = 1) => {
+  const getJobsData = async (searchText, page = currentPageFromURL ) => {
     setLoading(true);
     const abortController = new AbortController();
     const { signal } = abortController.signal;
-
+  
     try {
 
       let endpoint = `${import.meta.env.VITE_HOST}/jobs/filter?page=${page}`;
@@ -58,7 +71,7 @@ export default function Main() {
       setTotalPages(totalPages);
       setLoading(false);
       setSearchQuery(searchText);
-      setCurrentPage(page);
+      /* setCurrentPage(page); */
     } catch (error) {
       if (error.name !== 'AbortError') {
         console.error('Server Error:', error);
@@ -69,21 +82,20 @@ export default function Main() {
       abortController.abort();
     }
   };
-
-
   // Jobs Data
   useEffect(() => {
     getJobsData('')
-  }, [])
+  }, [currentPageFromURL])
 
-  const onPageChange = (page) => {
+  /* const onPageChange = async (page) => {
     setCurrentPage(page)
     getJobsData(searchQuery, page)
-  }
+    
+  } */
 
   return (
     <div className="flex h-full w-full">
-      <div className="h-full w-full bg-lightPrimary dark:!bg-zinc-900 duration-200">
+      <div className="h-full w-full bg-lightPrimary dark:!bg-navy-900 duration-200">
         <main
           className={`mx-[12px] h-full flex-none transition-all md:pr-2`}
         >
@@ -114,6 +126,7 @@ export default function Main() {
                     onPageChange={onPageChange}
                     currentPage={currentPage}
                     totalPages={totalPages}
+                    currentPageFromURL={currentPageFromURL}
                   />
                 )}
               </div>

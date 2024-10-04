@@ -1,18 +1,21 @@
 import { useState, useEffect, useContext } from 'react'
 import AuthContext from '../signin/TokenManager'
-import { Link } from 'react-router-dom'
+import { Link} from 'react-router-dom'
 import Loading from './Loading'
-import { theme } from '../theme/theme'
 import axios from 'axios'
 import Card from "../components/card";
 
-export default function Table({
+import ReactPaginate from "react-paginate"
+import { MdNavigateNext } from 'react-icons/md'
+import { GrFormPrevious } from "react-icons/gr";
 
+export default function Table({
   jobData,
   loading,
   onPageChange,
-  currentPage,
+  /* currentPage, */
   totalPages,
+  currentPageFromURL
 }) {
   // const [windowWidth, setWindowWidth] = useState(window.innerWidth)
   const [showMoreMap, setShowMoreMap] = useState(new Map())
@@ -45,8 +48,6 @@ export default function Table({
     }
   }, []);
 
-
-
   //size
   // useEffect(() => {
   //   function handleResize() {
@@ -58,7 +59,7 @@ export default function Table({
   //   }
   // }, [])
 
-  const visiblePageNumbers = () => {
+  /* const visiblePageNumbers = () => {
     const totalVisiblePages = 10
     const pagesBeforeCurrent = Math.floor(totalVisiblePages / 2)
     let startPage = Math.max(currentPage - pagesBeforeCurrent, 1)
@@ -72,13 +73,11 @@ export default function Table({
       { length: endPage - startPage + 1 },
       (_, index) => startPage + index
     )
-  }
+  } */
 
   return (
 
     <>
-      {/* //large table */}
-
       <Card extra={"w-full h-full px-6 pb-6 sm:overflow-x-auto mt-5  "}>
         {/* <div className='bg-white  rounded-sm border mb-4 border-gray-200 p-4 w-full my-5'> */}
         <div className='mt-7 w-full '>
@@ -102,10 +101,7 @@ export default function Table({
                     Skills
                   </h3> */}
                 <h3
-                  className=' col-span-1 font-bold '
-                >
-                  Required Experience
-                </h3>
+                  className=' col-span-1 font-bold '>Required Experience</h3>
                 <h3
                   className=' col-span-1 font-bold '
                 >
@@ -314,7 +310,7 @@ export default function Table({
 
 
       {/* pagination */}
-      <nav className='flex justify-center my-4'>
+      {/* <nav className='flex justify-center my-4'>
         <ul className='pagination flex flex-row '>
           <li
             className={`${currentPage === 1 ? 'disabled' : ''
@@ -360,7 +356,26 @@ export default function Table({
             </button>
           </li>
         </ul>
-      </nav>
+      </nav> */}
+
+      <div className='mt-4 flex justify-center'>
+        <ReactPaginate
+          activeClassName={'item active '}
+          previousClassName={"item previous"}
+          nextClassName={"item next "}
+          pageClassName={'item pagination-page '}
+          containerClassName={'pagination'}
+          disabledClassName={'disabled-page'}
+          previousLabel={<GrFormPrevious style={{ fontSize: 18, width: 150 }} />}
+          nextLabel={<MdNavigateNext style={{ fontSize: 18, width: 150 }} />}
+          breakLabel={'. . .'}
+          pageCount={totalPages}
+          marginPagesDisplayed={3}
+          pageRangeDisplayed={7}
+          onPageChange={onPageChange}
+          forcePage={currentPageFromURL - 1}
+        />
+      </div>
     </>
   )
 }

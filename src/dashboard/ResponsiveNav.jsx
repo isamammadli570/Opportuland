@@ -168,6 +168,9 @@ function ResponsiveNav({ setIsOpen }) {
           )}
         </ul>
       </div>
+      <div className="ml-32">
+        <Theme/>
+      </div>
       <div className="mt-40">
         <Footer />
       </div>

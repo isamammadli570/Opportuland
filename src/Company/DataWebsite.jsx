@@ -22,7 +22,7 @@ const getStackSuggestions = (value) => {
 
 // Function to render each suggestion
 const renderSuggestion = (suggestion, { query, isHighlighted }) => (
-    <div className={`p-2 m-1 ${isHighlighted ? 'bg-gray-200 dark:bg-gray-700' : 'bg-white dark:bg-zinc-900'} border rounded cursor-pointer`}>
+    <div className={`p-2 m-1 ${isHighlighted ? 'bg-gray-200 dark:bg-gray-700' : 'bg-white dark:bg-navy-900'} border rounded cursor-pointer`}>
         {suggestion}
     </div>
 );
@@ -153,21 +153,21 @@ function MyForm() {
         placeholder: "Type a technology",
         value: stackValue,
         onChange: onStackChange,
-        className: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-zinc-900 dark:text-white"
+        className: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-navy-900 dark:text-white"
     };
 
     const theme = {
         container: 'relative',
-        input: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-zinc-900 dark:text-white',
-        suggestionsContainer: 'absolute z-10 w-full bg-white dark:bg-zinc-800 border border-gray-300 rounded mt-1',
+        input: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-navy-900 dark:text-white',
+        suggestionsContainer: 'absolute z-10 w-full bg-white dark:bg-navy-800 border border-gray-300 rounded mt-1',
         suggestionsList: 'flex flex-wrap',
-        suggestion: 'p-2 m-1 bg-white dark:bg-zinc-900 border rounded hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer',
+        suggestion: 'p-2 m-1 bg-white dark:bg-navy-900 border rounded hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer',
         suggestionHighlighted: 'bg-gray-200 dark:bg-gray-700'
     };
 
     return (
         <div className="flex h-full w-full">
-            <div className="h-full w-full bg-lightPrimary dark:bg-zinc-900 duration-200">
+            <div className="h-full w-full bg-lightPrimary dark:bg-navy-900 duration-200">
                 <main className="mx-[12px] h-full flex-none transition-all md:pr-2">
                     <div className="h-full">
                         <form onSubmit={handleSubmit(onSubmit)} className="p-5 w-[70%] m-auto my-6">
@@ -185,7 +185,7 @@ function MyForm() {
                                         placeholder="Company Name"
                                         {...register("name", { required: "Company Name is required" })}
                                         onChange={handleChange}
-                                        className={`shadow appearance-none border rounded w-full py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-zinc-900 dark:text-white ${isDataFromLocalStorage ? 'bg-gray-100 dark:bg-zinc-800 cursor-not-allowed' : ''}`}
+                                        className={`shadow appearance-none border rounded w-full py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-navy-900 dark:text-white ${isDataFromLocalStorage ? 'bg-gray-100 dark:bg-navy-800 cursor-not-allowed' : ''}`}
                                         disabled={isDataFromLocalStorage}
                                     />
                                     {errors.name && <p className="text-red-500 text-xs italic">{errors.name.message}</p>}
@@ -196,7 +196,7 @@ function MyForm() {
                                         name="industry"
                                         {...register("industry", { required: "Industry is required" })}
                                         onChange={handleChange}
-                                        className={`shadow appearance-none border rounded w-full py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-zinc-900 dark:text-white ${isDataFromLocalStorage ? 'bg-gray-100 dark:bg-zinc-800 cursor-not-allowed' : ''}`}
+                                        className={`shadow appearance-none border rounded w-full py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-navy-900 dark:text-white ${isDataFromLocalStorage ? 'bg-gray-100 dark:bg-navy-800 cursor-not-allowed' : ''}`}
                                         disabled={isDataFromLocalStorage}
                                     >
                                         <option value="">Select an industry</option>
@@ -213,7 +213,7 @@ function MyForm() {
                                         id="companyInfo"
                                         {...register("companyInfo", { required: "Company About is required" })}
                                         onChange={handleChange}
-                                        className={`shadow appearance-none border rounded w-full py-10 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline dark:bg-zinc-900 dark:text-white ${isDataFromLocalStorage ? 'bg-gray-100 dark:bg-zinc-800 cursor-not-allowed' : ''}`}
+                                        className={`shadow appearance-none border rounded w-full py-10 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline dark:bg-navy-900 dark:text-white ${isDataFromLocalStorage ? 'bg-gray-100 dark:bg-navy-800 cursor-not-allowed' : ''}`}
                                         disabled={isDataFromLocalStorage}
                                     ></textarea>
                                     {errors.companyInfo && <p className="text-red-500 text-xs italic">{errors.companyInfo.message}</p>}
@@ -225,7 +225,7 @@ function MyForm() {
                                         id="productsServices"
                                         {...register("productsServices", { required: "Products and Services are required" })}
                                         onChange={handleChange}
-                                        className={`shadow appearance-none border rounded w-full py-10 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline dark:bg-zinc-900 dark:text-white ${isDataFromLocalStorage ? 'bg-gray-100 dark:bg-zinc-800 cursor-not-allowed' : ''}`}
+                                        className={`shadow appearance-none border rounded w-full py-10 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline dark:bg-navy-900 dark:text-white ${isDataFromLocalStorage ? 'bg-gray-100 dark:bg-navy-800 cursor-not-allowed' : ''}`}
                                         disabled={isDataFromLocalStorage}
                                     ></textarea>
                                     {errors.productsServices && <p className="text-red-500 text-xs italic">{errors.productsServices.message}</p>}
@@ -244,7 +244,7 @@ function MyForm() {
                                         placeholder="First and last name"
                                         {...register("fullName", { required: "Full Name is required" })}
                                         onChange={handleChange}
-                                        className="shadow appearance-none border rounded w-full py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-zinc-900 dark:text-white"
+                                        className="shadow appearance-none border rounded w-full py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-navy-900 dark:text-white"
                                     />
                                     {errors.fullName && <p className="text-red-500 text-xs italic">{errors.fullName.message}</p>}
                                 </div>
@@ -254,7 +254,7 @@ function MyForm() {
                                         name="department"
                                         {...register("department", { required: "Department is required" })}
                                         onChange={handleChange}
-                                        className="shadow appearance-none border rounded w-full py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-zinc-900 dark:text-white"
+                                        className="shadow appearance-none border rounded w-full py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-navy-900 dark:text-white"
                                     >
                                         <option value="">Select a department</option>
                                         {departmentsList.map((dept, index) => (
@@ -272,13 +272,13 @@ function MyForm() {
                                         placeholder="Head of IT"
                                         {...register("jobTitle", { required: "Job Title is required" })}
                                         onChange={handleChange}
-                                        className="shadow appearance-none border rounded w-full py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-zinc-900 dark:text-white"
+                                        className="shadow appearance-none border rounded w-full py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-navy-900 dark:text-white"
                                     />
                                     {errors.jobTitle && <p className="text-red-500 text-xs italic">{errors.jobTitle.message}</p>}
                                 </div>
                                 <div className="mb-4">
                                     <label className="block text-gray-700 text-lg font-bold mb-2 dark:text-white">Technologies</label>
-                                    <div className="flex flex-wrap items-center border rounded w-full py-4 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline dark:bg-zinc-900 dark:text-white">
+                                    <div className="flex flex-wrap items-center border rounded w-full py-4 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline dark:bg-navy-900 dark:text-white">
                                         {selections.map((selection, index) => (
                                             <div key={index} className="flex items-center bg-blue-200 text-blue-800 p-1 m-1 rounded dark:bg-blue-800 dark:text-white">
                                                 {selection}
@@ -306,7 +306,7 @@ function MyForm() {
                             </Card>
                             <button
                                 type="submit"
-                                className="justify-self-center w-full flex items-center justify-center sm:block bg-gray-700 hover:bg-gray-600 dark:bg-zinc-700 dark:hover:bg-zinc-600 py-3.5 px-32 text-white rounded-lg mt-8 sm:mt-10 hover:cursor-pointer"
+                                className="justify-self-center w-full flex items-center justify-center sm:block bg-gray-700 hover:bg-gray-600 dark:bg-navy-700 dark:hover:bg-navy-600 py-3.5 px-32 text-white rounded-lg mt-8 sm:mt-10 hover:cursor-pointer"
                             >
                                 Create
                             </button>

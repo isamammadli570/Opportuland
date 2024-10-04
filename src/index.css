@@ -4,6 +4,64 @@
 @tailwind components;
 @tailwind utilities;
 
+/* pagination css */
+.item {
+  align-items: center;
+  color: rgb(121, 121, 121);
+  cursor: pointer;
+  display: flex;
+  font-size: 14px;
+  height: 30px;
+  justify-content: center;
+  width: 30px;
+}
+
+.disabled-page {
+  color: #b2b2b2;
+}
+
+.active {
+  border: solid 1px #373737;
+  border-radius: 40px;
+  color: #373737;
+}
+
+
+.next {
+  border-left: solid 1px #373737;
+  font-size: 4px;
+  height: 30px;
+  position: absolute;
+  right: 0;
+  width: 70px;
+}
+
+.pagination {
+  align-items: center;
+  background-color: #dddddd;
+  display: flex;
+  flex-direction: row;
+  height: 40px;
+  justify-content: center;
+  list-style-type: none;
+  position: relative;
+  width: 700px;
+  border-radius: 10px;
+}
+
+.pagination-page {
+  font-weight: 700;
+}
+
+.previous {
+  border-right: solid 1px #373737;
+  font-size: 4px;
+  height: 30px;
+  left: 0;
+  position: absolute;
+  width: 70px;
+}
+
 
 @layer base {
 	html {
