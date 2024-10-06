@@ -4,7 +4,7 @@ import Search from './Search'
 import Loading from './Loading'
 import { useSearchParams } from 'react-router-dom'
 
-export default function Main() {
+export default function Local() {
   const [jobData, setJobData] = useState([])
   const [loading, setLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState('')
@@ -54,7 +54,7 @@ export default function Main() {
     setLoading(true)
 
     try {
-      let endpoint = `${import.meta.env.VITE_HOST}/jobs/filter?page=${page}`
+      let endpoint = `${import.meta.env.VITE_HOST}/jobsLocal/filter?page=${page}`
 
       if (searchText) {
         const encodedSearchText = encodeURIComponent(searchText).trim();

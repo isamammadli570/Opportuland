@@ -4,8 +4,8 @@ import Navbar from "../../components/navbar";
 import Sidebar from "../../components/sidebar";
 import Footer from "../../components/footer/Footer";
 import routes from "../../routes.jsx";
-import AuthContext from '../../signin/TokenManager.jsx';
-import Loading from '../../dashboard/Loading';
+import AuthContext from '../../contexts/TokenManager.jsx';
+import Loading from '../../ui/Loading/Loading.jsx';
 
 export default function Admin(props) {
   const { ...rest } = props;

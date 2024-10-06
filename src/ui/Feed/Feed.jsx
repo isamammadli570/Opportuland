@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
-import Loading from '../dashboard/Loading';
+import Loading from '../Loading/Loading';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight, faCaretUp, faLink } from '@fortawesome/free-solid-svg-icons';
-import AuthContext from '../signin/TokenManager';
+import AuthContext from '../../contexts/TokenManager';
 
 import {
   Accordion,
@@ -13,7 +13,7 @@ import {
   AccordionPanel,
   AccordionIcon,
 } from "@chakra-ui/accordion"
-import Modal from '../dashboard/Modal';
+import Modal from '../Modal/Modal';
 
 const dummyToken = "asd";
 

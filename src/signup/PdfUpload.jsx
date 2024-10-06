@@ -1,6 +1,6 @@
 import { useState } from "react";
 import logo from "../../src/assets/icons/pdf.svg";
-import Loading from "../dashboard/Loading";
+import Loading from "../ui/Loading/Loading";
 
 export default function PdfUpload({
   setStep,

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState, useContext } from 'react'
-import AuthContext from './TokenManager'
+import AuthContext from '../contexts/TokenManager'
 import { useNavigate } from 'react-router-dom'
 import Close from '../assets/icons/close.svg'
 import ViewEye from '../assets/icons/view.png'

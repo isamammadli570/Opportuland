@@ -2,13 +2,13 @@ import axios from "axios";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { useForm } from "react-hook-form";
-import AuthContext from "../contexts/TokenManager";
-import Loading from "../dashboard/Loading";
-import Card from "../components/card";
+import AuthContext from "../../contexts/TokenManager";
+import Loading from "../Loading/Loading";
+import Card from "../../components/card";
 import { useDropzone } from "react-dropzone";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilePdf, faFileExcel, faFileImage, faFileAlt } from '@fortawesome/free-solid-svg-icons';
-import Modal from "../ui/Modal/Modal";
+import Modal from "../Modal/Modal";
 
 const SingleJob = () => {
   const navigate = useNavigate();

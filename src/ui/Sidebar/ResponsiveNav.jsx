@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 import { AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import Theme from "../dashboard/Theme";
-import Footer from "./Footer";
+import Theme from "../../theme/ThemeDL";
+import Footer from "../Footer/Footer";
 import { Fragment, useContext } from "react";
-import AuthContext from "../signin/TokenManager";
+import AuthContext from "../../contexts/TokenManager";
 import { Menu, Transition } from "@headlessui/react";
-import { theme } from "../theme/theme";
+import { theme } from "../../theme/theme";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 
 
@@ -43,7 +43,7 @@ function ResponsiveNav({ setIsOpen }) {
 
       <div className="flex justify-center py-20">
         <ul className="flex items-center flex-col gap-12 ml-5 mt-12">
-          <li>
+          {/* <li>
             <Link
               onClick={toggleNavbar}
               to="/"
@@ -61,6 +61,17 @@ function ResponsiveNav({ setIsOpen }) {
                 } hover:text-yellow-500 dark:hover:text-yellow-500`}
             >
               Contests
+            </Link>
+          </li>
+ */}
+          <li>
+            <Link
+              onClick={toggleNavbar}
+              to="/local?page=1"
+              className={`text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/local") ? "text-yellow-500" : "text-navy-700 dark:text-white"
+                } hover:text-yellow-500 dark:hover:text-yellow-500`}
+            >
+              Local
             </Link>
           </li>
 
@@ -167,6 +178,9 @@ function ResponsiveNav({ setIsOpen }) {
             </>
           )}
         </ul>
+      </div>
+      <div className="absolute top-[6.7rem] right-16">
+        <Theme />
       </div>
       <div className="mt-40">
         <Footer />

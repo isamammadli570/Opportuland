@@ -8,8 +8,8 @@ import {
 } from "react-table";
 import { MdCheckCircle, MdOutlineError } from "react-icons/md";
 import Progress from "../../../components/progress";
-import AuthContext from '../../../signin/TokenManager';
-import Loading from "../../../dashboard/Loading";
+import AuthContext from '../../../contexts/TokenManager';
+import Loading from "../../../ui/Loading/Loading";
 
 const ComplexTable = ({ columnsData, tableData: initialTableData, onRowClick }) => {
   const { getAccessTokenFromMemoryCompany } = useContext(AuthContext);

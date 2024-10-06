@@ -11,7 +11,7 @@ import {
   IoMdInformationCircleOutline,
 } from "react-icons/io";
 import avatar from "../../assets/img/avatars/avatar4.png";
-import Theme from "../../dashboard/Theme";
+import Theme from "../../theme/ThemeDL";
 
 const Navbar = (props) => {
   const { onOpenSidenav, brandText } = props;

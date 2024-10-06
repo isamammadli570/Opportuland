@@ -1,7 +1,7 @@
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
-import logo from "../../favicon/android-chrome-512x512.png";
+import logo from "../../../favicon/android-chrome-512x512.png";
 import { useContext } from 'react';
-import AuthContext from '../signin/TokenManager';
+import AuthContext from '../../contexts/TokenManager';
 import { IoMdClose } from 'react-icons/io';
 
 function Modal({ toggleModal }) {

@@ -9,8 +9,8 @@ import {
 } from "react-table";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilePdf, faFileExcel, faFileImage, faFileAlt } from '@fortawesome/free-solid-svg-icons';
-import AuthContext from '../../signin/TokenManager';
-import Loading from "../../dashboard/Loading";
+import AuthContext from '../../contexts/TokenManager';
+import Loading from "../../ui/Loading/Loading";
 
 const ContestSubmissionsTable = ({ contestId }) => {
   const { getAccessTokenFromMemoryCompany } = useContext(AuthContext);

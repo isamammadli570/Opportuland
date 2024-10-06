@@ -17,7 +17,7 @@ import DailyTraffic from "../../../views/admin/default/components/DailyTraffic";
 import TaskCard from "../../../views/admin/default/components/TaskCard";
 import tableDataCheck from "./variables/tableDataCheck.json";
 import tableDataComplex from "./variables/tableDataComplex.json";
-import Loading from "../../../dashboard/Loading";
+import Loading from "../../../ui/Loading/Loading";
 
 const Dashboard = ({ users, contests }) => {
   const [loading, setLoading] = useState(true);

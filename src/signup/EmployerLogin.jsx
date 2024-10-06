@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import ButtonRadio from '../signin/ButtonRadio';
 import Signup from './Signup';
 import CompanySignUp from "../Company/CompanySignUp"
-import AuthContext from '../signin/TokenManager';
+import AuthContext from '../contexts/TokenManager';
 import { useNavigate } from 'react-router-dom';
 import ViewEye from "../assets/icons/view.png";
 import HideEye from "../assets/icons/hide.png";

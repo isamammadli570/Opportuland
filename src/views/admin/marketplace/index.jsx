@@ -5,7 +5,7 @@ import { industryList } from '../../../helperList/Industry';
 import { departmentsList } from '../../../helperList/Departments';
 import Autosuggest from "react-autosuggest";
 import axios from 'axios';
-import Loading from "../../../dashboard/Loading";
+import Loading from "../../../ui/Loading/Loading";
 import { useNavigate } from "react-router-dom";
 import secureLocalStorage from "react-secure-storage";
 import Card from "../../../components/card";

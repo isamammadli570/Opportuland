@@ -1,4 +1,4 @@
-import Loading from "./Loading";
+import Loading from '../ui/Loading/Loading.jsx';
 import { Fragment} from "react";
 import { theme } from "../theme/theme";
 import { Menu, Transition } from "@headlessui/react";

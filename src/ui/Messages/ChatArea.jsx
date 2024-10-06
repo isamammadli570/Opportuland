@@ -3,9 +3,9 @@ import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { FaPaperclip, FaPaperPlane } from 'react-icons/fa'
 import secureLocalStorage from 'react-secure-storage'
-import Loading from '../dashboard/Loading'
+import Loading from '../Loading/Loading'
 import { Link } from 'react-router-dom'
-import Card from "../components/card"
+import Card from "../../components/card"
 
 const ChatArea = () => {
   const { customer, company, subject, references, id, jobId } =

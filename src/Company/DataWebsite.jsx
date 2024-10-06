@@ -7,7 +7,7 @@ import Autosuggest from "react-autosuggest";
 import { stackList } from '../helperList/StackList';
 import { industryList } from '../helperList/Industry';
 import { departmentsList } from '../helperList/Departments';
-import Loading from "../dashboard/Loading";
+import Loading from '../ui/Loading/Loading';
 import Card from "../components/card";
 
 // Function to filter suggestions for stackList

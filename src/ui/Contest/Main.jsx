@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react'
 import Table from './Table'
 import Search from './Search'
-import Loading from '../dashboard/Loading'  // Import the Loading component
+import Loading from '../Loading/Loading'  // Import the Loading component
 
 
 import React from "react";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
-import Footer from "../components/footer/Footer";
 
 
 export default function Contests() {

@@ -4,7 +4,7 @@ import axios from "axios";
 import Modal from "react-modal";
 import ViewEye from "../assets/icons/view.png";
 import HideEye from "../assets/icons/hide.png";
-import Loading from "../dashboard/Loading";
+import Loading from '../ui/Loading/Loading.jsx';
 
 function EmployerRegister() {
     const navigate = useNavigate();

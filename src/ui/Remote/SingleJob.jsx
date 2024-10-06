@@ -1,13 +1,13 @@
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
-import AuthContext from "../signin/TokenManager";
-import { theme } from "../theme/theme";
+import AuthContext from "../../contexts/TokenManager";
+import { theme } from "../../theme/theme";
 import { useNavigate } from "react-router-dom";
-import RegenerateResume from "./RegenerateResume";
-import RegenerateText from "./RegenerateText";
-import Loading from "./Loading";
-import Card from "../components/card"
+import RegenerateResume from "../../dashboard/RegenerateResume";
+import RegenerateText from "../../dashboard/RegenerateText";
+import Loading from "../Loading/Loading";
+import Card from "../../components/card"
 
 const SingleJob = () => {
   const navigate = useNavigate();

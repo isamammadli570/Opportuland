@@ -1,9 +1,9 @@
-import AuthContext from '../signin/TokenManager'
+import AuthContext from '../../contexts/TokenManager'
 import { useState, useEffect, useContext } from 'react'
 import moment from 'moment'
 import { useNavigate } from 'react-router-dom'
-import Loading from '../dashboard/Loading'
-import Card from "../components/card"
+import Loading from '../Loading/Loading'
+import Card from "../../components/card"
 
 const Messages = () => {
   const [lastReplyMessage, setLastReplyMessage] = useState()

@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from "react";
-import AuthContext from "../signin/TokenManager";
+import AuthContext from "../contexts/TokenManager";
 import { yearsOptions, countryList } from "../data";
-import Loading from "../dashboard/Loading";
+import Loading from '../ui/Loading/Loading';
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";

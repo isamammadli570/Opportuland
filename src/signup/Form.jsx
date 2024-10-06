@@ -1,6 +1,6 @@
 import Close from "../assets/icons/close.svg";
 import { useState } from "react";
-import Loading from "../dashboard/Loading";
+import Loading from "../ui/Loading/Loading";
 import { PrivacyTitle, PrivacyText, PrivacyDate } from "../PrivacyText";
 import { text, title, date } from "../Terms";
 

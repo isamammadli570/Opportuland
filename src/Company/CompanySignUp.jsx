@@ -5,7 +5,7 @@ import Modal from "react-modal";
 import Close from "../assets/icons/close.svg";
 import ViewEye from "../assets/icons/view.png";
 import HideEye from "../assets/icons/hide.png";
-import Loading from "../dashboard/Loading";
+import Loading from '../ui/Loading/Loading';
 
 Modal.setAppElement("#root");
 

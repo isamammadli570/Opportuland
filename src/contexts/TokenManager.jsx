@@ -9,6 +9,7 @@ export default AuthContext
 export const TokenManager = ({ children }) => {
   const [user, setUser] = useState()
   const navigate = useNavigate()
+  
   // token hissesi
   const getAccessTokenFromMemory = () => {
     const token = secureLocalStorage.getItem('accessToken')

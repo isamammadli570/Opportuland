@@ -1,22 +1,20 @@
 import { useState, useContext, useEffect, Fragment } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import AuthContext from "../signin/TokenManager";
+import AuthContext from "../../contexts/TokenManager";
 import { Menu, Transition } from "@headlessui/react";
-import { theme } from "../theme/theme";
+import { theme } from "../../theme/theme";
 import { HiBars3 } from "react-icons/hi2";
-import Theme from "../dashboard/Theme"
-import { AiOutlineCaretDown, AiOutlineCaretUp, AiOutlineCheckSquare } from "react-icons/ai";
-import { FaCaretDown } from "react-icons/fa";
+import Theme from "../../theme/ThemeDL"
+import { GoChevronDown } from "react-icons/go";
 
 const Sidebar = ({ isOpen, setIsOpen }) => {
-  const [hamburgerMenuOpen, setHamburgerMenuOpen] = useState(false);
+ /*  const [hamburgerMenuOpen, setHamburgerMenuOpen] = useState(false); */
   const [selectedItem, setSelectedItem] = useState("Get Started");
   const user = localStorage.getItem("user");
   const userData = JSON.parse(user);
 
   const googleUser = localStorage.getItem("googleUser");
-
   const googleUserData = JSON.parse(googleUser);
 
   const userCompany = localStorage.getItem("userCompany");
@@ -25,16 +23,16 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
   const { logOut } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-  const [isOpenMenu, setIsOpenMenu] = useState(false)
-  const [isOpenMenuUser, setIsOpenMenuUser] = useState(false)
+  /* const [isOpenMenu, setIsOpenMenu] = useState(false)
+  const [isOpenMenuUser, setIsOpenMenuUser] = useState(false) */
 
   const [open, setOpen] = useState(true);
 
-  const handleItemClick = (itemType) => {
+  /* const handleItemClick = (itemType) => {
     setSelectedItem(itemType);
     const route = itemType === "User" ? "/signup" : "/company";
     navigate(route);
-  };
+  }; */
 
   const isActive = (path) => location.pathname === path;
 
@@ -61,7 +59,6 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
   const handleNavigateStartRegister = () => {
     navigate("/register");
   }
-
   const handleNavigateStartUser = () => {
     navigate("/user-login");
   };
@@ -69,28 +66,12 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
     navigate("/user-register");
   }
 
-
-  const handleNavigateLogIn = () => {
-    navigate("/user-login")
-  }
-
-  const logOutCombined = () => {
-    logOut()
-
-  }
   return (
     <div className="h-full w-full bg-lightPrimary dark:!bg-zinc-900 duration-200">
       <main className={`mx-[12px] h-full flex-none transition-all md:pr-2`}>
         <nav className="bg-lightPrimary dark:!bg-zinc-900 py-6 sticky top-4 z-40 rounded-xl bg-white/10 p-2 backdrop-blur-xl dark:bg-[#0b14374d]">
           {/* navbar div */}
           <div className="flex justify-between items-center ">
-            {/* <div className="ml-[6px]">
-                  <p className="shrink text-[33px] capitalize text-zinc-700 dark:text-white">
-                    <Link to="#" className="font-bold capitalize hover:text-zinc-700 dark:hover:text-white">
-                    </Link>
-                  </p>
-                </div> */}
-
             {/* logo hissesi */}
             <div className="md:mx-[56px] mx-[20px] flex ">
               <div className="font-poppins md:text-[26px] text-[16px] font-bold uppercase text-zinc-700 dark:text-white">
@@ -107,9 +88,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
               <div className="flex items-center ">
                 {/* linkler */}
                 <div className="flex items-center gap-10 ">
-
                   <ul className="flex items-center md:space-x-8 md:ml-10 ">
-
                     {/* <li className="lg:flex hidden">
                       <Link
                         to="/"
@@ -119,6 +98,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                         Home
                       </Link>
                     </li>
+                    
                     <li className="lg:flex hidden">
                       <Link
                         to="/contest"
@@ -128,6 +108,15 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                         Contests
                       </Link>
                     </li> */}
+                    <li className="lg:flex hidden">
+                      <Link
+                        to="/local?page=1"
+                        className={`text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/local") ? "text-yellow-500" : "text-zinc-700 dark:text-white"
+                          } hover:text-yellow-500 dark:hover:text-yellow-500`}
+                      >
+                        Local
+                      </Link>
+                    </li>
 
                     <li className="lg:flex hidden">
                       <Link
@@ -238,116 +227,55 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                       <>
                         {/* button hissesi */}
                         <div className="flex gap-3 px-2">
-                          {/* <button
-                            onClick={() => setIsOpenMenuUser((prev) => !prev)}
-                            className="flex justify-center items-center md:px-4 md:py-1.5 border-2 border-yellow-400 text-yellow-500  rounded-md hover:bg-yellow-400 duration-200 hover:text-white">
-                            <div className="flex gap-1">
-                              <p>Log</p>
-                              <p>In</p>
+                          <div className="group relative cursor-pointer ">
+                            <div className="flex items-center justify-between border-2 border-yellow-400 text-yellow-500 rounded-md hover:bg-yellow-400 hover:text-white duration-200">
+                              <a className="menu-hover py-[6px] text-base text-black mx-4">
+                                Log in
+                              </a>
                             </div>
+                            <div
+                              className="invisible absolute z-50 flex w-full flex-col bg-white dark:bg-zinc-800  rounded-md text-gray-800 dark:text-gray-200 shadow-xl group-hover:visible">
+                              <p
+                                onClick={handleNavigateStartUser}
+                                className="my-2 block border-b border-stone-100 md:px-0 px-2 py-1 hover:text-black md:mx-2 hover:text-yellow-500">
+                                Log in
+                              </p>
 
-                            {isOpenMenuUser && (
-                              <div className="absolute top-[73px] flex flex-col px-2 
-                                items-start bg-zinc-400  rounded-md text-white ">
-                                <p
-                                  onClick={handleNavigateStartUser}
-                                  className="hover:text-yellow-300 duration-200 ">
-                                  Log in
-                                </p>
-                                <p
-                                  onClick={handleNavigateStartRegisterUser}
-                                  className="hover:text-yellow-300 duration-200">
-                                  Register
-                                </p>
-                              </div>
-                            )}
-                          </button> */}
-
-                          {/* <button
-                            onClick={() => setIsOpenMenu((prev) => !prev)}
-                            className="flex justify-center items-center p-2 bg-yellow-400 text-black rounded-md text-zinc-700 hover:bg-yellow-500 hover:text-white duration-200 focus:outline-none">
-                            <div className="flex gap-1">
-                              <p>For</p>
-                              <p>Employer</p>
-                            </div>
-                            {!isOpenMenu ? (
-                              <AiOutlineCaretDown className="h-6" />
-                            ) : (
-                              <AiOutlineCaretUp className="h-6" />
-                            )}
-
-                            {isOpenMenu && (
-                              <div className="absolute top-[73px] flex flex-col px-2 
-                                items-start bg-zinc-400 w-32 rounded-md text-white ">
-                                <p
-                                  onClick={handleNavigateStart}
-                                  className="hover:text-yellow-300 duration-200 ">
-                                  Log in
-                                </p>
-                                <p
-                                  onClick={handleNavigateStartRegister}
-                                  className="hover:text-yellow-300 duration-200">
-                                  Register
-                                </p>
-                              </div>
-                            )}
-                          </button> */}
-
-                          <div className="group relative cursor-pointer md:px-4 md:py-1.5 border-2 border-yellow-400 text-yellow-500 rounded-md hover:bg-yellow-400 hover:text-white duration-200 ">
-                            <div className="flex gap-1 ">
-                              <p>Log</p>
-                              <p>in</p>
-                            </div>
-                            {/* acılan linkler */}
-                            <div className="absolute shadow-md -left-8 w-[75px] z-[10] rounded-md mt-2 ml-8 hidden group-hover:block text-black bg-white dark:bg-zinc-900 ">
-                                <li>
-                                  <p
-                                    onClick={handleNavigateStartUser}
-                                    className="inline-block w-full rounded-md p-2 hover:bg-primary/20 text-zinc-700 dark:text-zinc-300"
-                                  >
-                                    Log in
-                                  </p>
-                                  <p
-                                    onClick={handleNavigateStartRegisterUser}
-                                    className="inline-block w-full rounded-md p-2 hover:bg-primary/20 text-zinc-700 dark:text-zinc-300"
-                                  >
-                                    Register
-                                  </p>
-                                </li>
+                              <p
+                                onClick={handleNavigateStartRegisterUser}
+                                className="my-2 block border-b border-gray-100 md:px-0 px-2 py-1 hover:text-black md:mx-2 hover:text-yellow-500">
+                                Register
+                              </p>
                             </div>
                           </div>
 
-                          <div className="group relative cursor-pointer p-2 bg-yellow-400 text-black rounded-md hover:bg-yellow-500  duration-200 focus:outline-none ">
-                            <div className="flex gap-1">
-                              <p>For</p>
-                              <p>Employer</p>
-                              <span className="transition duration-200 group-hover:rotate-180">
-                                <FaCaretDown />
+                          <div className="group relative cursor-pointer ">
+                            <div className="flex items-center justify-between  bg-yellow-400 text-black rounded-md hover:bg-yellow-500 duration-200">
+                              <a className="menu-hover py-2 text-base text-black lg:mx-2 px-1">
+                                For Employer
+                              </a>
+                              <span className="transition duration-200 group-hover:rotate-180 px-2">
+                                <GoChevronDown />
                               </span>
                             </div>
-                            {/* acılan linkler */}
-                            <div className="absolute shadow-md -left-1 rounded-md mt-2 ml-1 z-[10] w-32 hidden group-hover:block text-black bg-white dark:bg-zinc-900 p-2">
-                              <div >
-                                <li>
-                                  <p
-                                    onClick={handleNavigateStart}
-                                    className="inline-block w-full rounded-md p-2 hover:bg-primary/20 text-zinc-700 dark:text-zinc-300"
-                                  >
-                                    Log in
-                                  </p>
-                                  <p
-                                    onClick={handleNavigateStartRegister}
-                                    className="inline-block w-full rounded-md p-2 hover:bg-primary/20 text-zinc-700 dark:text-zinc-300"
-                                  >
-                                    Register
-                                  </p>
-                                </li>
-                              </div>
+                            <div
+                              className="invisible absolute z-50 flex w-full flex-col bg-white dark:bg-zinc-800 py-1 px-4 rounded-md text-gray-800 dark:text-gray-200  shadow-xl group-hover:visible">
+                              <p
+                                onClick={handleNavigateStart}
+                                className="my-2 block border-b border-stone-100 py-1 hover:text-black md:mx-2 hover:text-yellow-500 ">
+                                Log in
+                              </p>
+
+                              <p
+                                onClick={handleNavigateStartRegister}
+                                className="my-2 block border-b border-gray-100 py-1 hover:text-black md:mx-2 hover:text-yellow-500 ">
+                                Register
+                              </p>
                             </div>
                           </div>
-
-
                         </div>
+
+
                       </>
                     )}
                   </ul>
@@ -361,7 +289,6 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                     />
                   )}
                 </div>
-
               </div >
             </div>
           </div >

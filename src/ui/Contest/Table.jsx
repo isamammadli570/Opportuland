@@ -1,10 +1,9 @@
 import { useState, useEffect, useContext } from 'react'
-import AuthContext from '../signin/TokenManager'
+import AuthContext from '../../contexts/TokenManager'
 import { Link } from 'react-router-dom'
-import Loading from '../dashboard/Loading'
-import { theme } from '../theme/theme'
+import Loading from '../Loading/Loading'
 import axios from 'axios'
-import Card from "../components/card";
+import Card from "../../components/card";
 
 export default function Table({
 

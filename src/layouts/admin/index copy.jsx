@@ -6,7 +6,7 @@ import Footer from "../../components/footer/Footer";
 import routes from "../../routes.jsx";
 
 import AuthContext from '../../signin/TokenManager';
-import Loading from '../../dashboard/Loading';
+import Loading from '../../ui/Loading/Loading.jsx';
 
 export default function Admin(props) {
   const { ...rest } = props;

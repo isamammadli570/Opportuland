@@ -1,9 +1,9 @@
 import { useState, useEffect, useContext } from 'react'
-import AuthContext from '../signin/TokenManager'
+import AuthContext from '../../contexts/TokenManager'
 import { Link } from 'react-router-dom'
-import Loading from './Loading'
+import Loading from '../Loading/Loading'
 import axios from 'axios'
-import Card from "../components/card";
+import Card from "../../components/card";
 import ReactPaginate from "react-paginate"
 import { MdNavigateNext } from 'react-icons/md'
 import { GrFormPrevious } from "react-icons/gr";
