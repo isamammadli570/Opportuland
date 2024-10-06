@@ -1,97 +1,95 @@
 import { useState, useEffect } from 'react'
 import Table from './Table'
 import Search from './Search'
-import Loading from './Loading'  // Import the Loading component
+import Loading from './Loading'
 import { useSearchParams } from 'react-router-dom'
 
 export default function Main() {
-  const [isOpen, setIsOpen] = useState(false)
   const [jobData, setJobData] = useState([])
   const [loading, setLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState('')
-  /* const [currentPage, setCurrentPage] = useState() */
   const [totalPages, setTotalPages] = useState()
-  
-  const [currentPage, setCurrentPage] = useState(1) 
-  const [searchParams, setSearchParams] = useSearchParams(); 
+
+  const [currentPage, setCurrentPage] = useState(1)
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const currentPageFromURL = Number(searchParams.get("page")) || 1;
-  
+  const currentKeywordFromURL = searchParams.get("keyword") || ''
+
   useEffect(() => {
-    const page = searchParams.get('page') || 1; 
-    setCurrentPage(parseInt(page)); 
-  }, [searchParams]);
+    const page = searchParams.get('page') || 1
+    const keyword = searchParams.get('keyword') || ''
+    setCurrentPage(parseInt(page))
+    setSearchQuery(keyword)
+  }, [searchParams])
 
-  
   const onPageChange = (selectedPage) => {
+    const page = selectedPage.selected + 1;
+    const params = { page };
 
-    const page = selectedPage.selected + 1; // Selected page number
-    setSearchParams({ page }); // Update URL with new page
-    getJobsData(searchQuery, page); 
+    if (searchQuery) {
+      params.keyword = searchQuery
+    }
+
+    setSearchParams(params);
+    getJobsData(searchQuery, page);
   };
 
-  const openPopup = () => {
-    setIsOpen(true)
-  }
-  const closePopup = () => {
-    setIsOpen(false)
-  }
-  const getJobsData = async (searchText, page = currentPageFromURL ) => {
-    setLoading(true);
-    const abortController = new AbortController();
-    const { signal } = abortController.signal;
-  
-    try {
+  const onSearch = () => {
+    const page = 1
+    const params = { page }
 
-      let endpoint = `${import.meta.env.VITE_HOST}/jobs/filter?page=${page}`;
+    if (searchQuery) {
+      params.keyword = searchQuery
+    } else {
+      params.keyword = undefined
+    }
+
+    setSearchQuery(searchQuery)
+    setSearchParams(params)
+    getJobsData(searchQuery, page)
+  }
+
+  const getJobsData = async (searchText, page = 1) => {
+    setLoading(true)
+
+    try {
+      let endpoint = `${import.meta.env.VITE_HOST}/jobs/filter?page=${page}`
 
       if (searchText) {
         const encodedSearchText = encodeURIComponent(searchText).trim();
         endpoint += `&q=${encodedSearchText}`;
-
       }
 
-      const response = await fetch(endpoint, {
+      const res = await fetch(endpoint, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
-        signal,
-      });
+      })
 
-      if (!response.ok) {
-        throw new Error(`HTTP Error! Status: ${response.status}`);
+      if (!res.ok) {
+        throw new Error(`HTTP Error! Status: ${res.status}`)
       }
 
-      const { data, totalPages } = await response.json();
+      const { data, totalPages } = await res.json()
 
       if (!Array.isArray(data)) {
-        throw new Error('Invalid data format: response is not an array');
+        throw new Error('Invalid data format: response is not an array')
       }
 
-      setJobData(data);
-      setTotalPages(totalPages);
-      setLoading(false);
-      setSearchQuery(searchText);
-      /* setCurrentPage(page); */
+      setJobData(data)
+      setTotalPages(totalPages || 0)
+      setLoading(false)
+
     } catch (error) {
-      if (error.name !== 'AbortError') {
-        console.error('Server Error:', error);
-        alert(JSON.stringify(error));
-        setLoading(false);
-      }
-    } finally {
-      abortController.abort();
+      console.error('Server Error:', error)
+      alert(JSON.stringify(error))
+      setLoading(false)
     }
-  };
-  // Jobs Data
-  useEffect(() => {
-    getJobsData('')
-  }, [currentPageFromURL])
+  }
 
-  /* const onPageChange = async (page) => {
-    setCurrentPage(page)
-    getJobsData(searchQuery, page)
-    
-  } */
+  useEffect(() => {
+    getJobsData(currentKeywordFromURL, currentPageFromURL)
+  }, [currentKeywordFromURL, currentPageFromURL])
 
   return (
     <div className="flex h-full w-full">
@@ -107,20 +105,13 @@ export default function Main() {
                 </div>
               )}
               <div className='relative h-full w-full z-1 px-6'>
-                {isOpen && (
-                  <div className='absolute top-0 left-0 w-full h-full bg-black/20'></div>
-                )}
                 <Search
-                  onSearch={getJobsData}
+                  onSearch={onSearch}
                   searchQuery={searchQuery}
                   setSearchQuery={setSearchQuery}
-                  onPageChange={onPageChange}
                 />
                 {!loading && (
                   <Table
-                    isOpenPopup={isOpen}
-                    closePopup={closePopup}
-                    openPopup={openPopup}
                     jobData={jobData}
                     loading={loading}
                     onPageChange={onPageChange}
@@ -131,7 +122,6 @@ export default function Main() {
                 )}
               </div>
             </div>
-            {/* <Footer /> */}
           </div>
         </main>
       </div>

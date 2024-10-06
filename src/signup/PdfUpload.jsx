@@ -63,7 +63,7 @@ export default function PdfUpload({
         <div id="pdf" className="w-full h-full flex flex-col items-center">
             {loading ? <div className='fixed inset-0 z-50'><Loading /></div> : null}
             <button className="absolute right-4 top-4"></button>
-            <h3 className='text-center sm:text-start w-fit text-3xl lg:text-[40px] bg-[#a37bfd]font-medium pb-2 md:px-12 mb-4 font-bold text-black/70'>
+            <h3 className='text-center sm:text-start w-fit text-3xl lg:text-[40px] pb-2 md:px-12 mb-4 text-black/70'>
             Upload Your Resume
             </h3>
             <div className="h-[300px] w-[300px] border-2 border-dashed border-yellow-500 rounded-xl mt-8 flex flex-col items-center justify-center">

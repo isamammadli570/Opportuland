@@ -4,15 +4,11 @@ import { createContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const AuthContext = createContext()
-
 export default AuthContext
 
 export const TokenManager = ({ children }) => {
   const [user, setUser] = useState()
   const navigate = useNavigate()
-
-  /* const [googleUser, setGoogleUser] = useState() */
-
   // token hissesi
   const getAccessTokenFromMemory = () => {
     const token = secureLocalStorage.getItem('accessToken')
@@ -39,7 +35,6 @@ export const TokenManager = ({ children }) => {
     secureLocalStorage.removeItem('accessTokenCompany')
     secureLocalStorage.removeItem('accessTokenGoogleUser')
     setUser(null)
-    /* setGoogleUser(null) */
     navigate('/')
   }
 
@@ -65,10 +60,8 @@ export const TokenManager = ({ children }) => {
         }
         setUser(user)
         localStorage.setItem('user', JSON.stringify(user))
-        // console.log(data.accessToken);
         secureLocalStorage.setItem('accessToken', data.accessToken)
         navigate('/')
-        // window.history.back()
       } else {
         throw new Error('Network response failed')
       }
@@ -83,29 +76,28 @@ export const TokenManager = ({ children }) => {
     const { credential } = credentialResponse;
     const apiUrl = `${import.meta.env.VITE_HOST}/auth/google-signin`; // Correct string interpolation
     try {
-        const res = await fetch(apiUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ token: credential }),
-        });
+      const res = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ token: credential }),
+      });
 
-        const data = await res.json();
-        if (data.token) {
-          setUser(user)
-            localStorage.setItem('googleUser', JSON.stringify(data.user));
-            secureLocalStorage.setItem('accessTokenGoogleUser', data.token);
-              // Close modal on successful login
-              return true
-        } else {
-            console.log('Login Failed');
-        }
+      const data = await res.json();
+      if (data.token) {
+        setUser(user)
+        localStorage.setItem('googleUser', JSON.stringify(data.user));
+        secureLocalStorage.setItem('accessTokenGoogleUser', data.token);
+        return true
+      } else {
+        console.log('Login Failed');
+      }
     } catch (error) {
-        console.error('Error:', error);
-        alert('Login is failed');
+      console.error('Error:', error);
+      alert('Login is failed');
     }
-}
+  }
 
 
   // Company Login
@@ -132,11 +124,9 @@ export const TokenManager = ({ children }) => {
         }
         setUser(user)
         localStorage.setItem('userCompany', JSON.stringify(user))
-        // console.log(data.accessToken);
         secureLocalStorage.setItem('accessTokenCompany', data.accessToken)
         { user.admin ? navigate('/admin/default') : navigate('admin/my-contests') }
 
-        // window.history.back()
       } else {
         throw new Error('Network response failed')
       }
@@ -155,7 +145,6 @@ export const TokenManager = ({ children }) => {
     GoogleUserLogin: GoogleUserLogin,
     logOut: logOut,
     user: user,
-    /* googleUser: googleUser, */
   }
 
   return (

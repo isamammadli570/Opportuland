@@ -5,7 +5,7 @@ import AuthContext from "../signin/TokenManager";
 import { Menu, Transition } from "@headlessui/react";
 import { theme } from "../theme/theme";
 import { HiBars3 } from "react-icons/hi2";
-import Theme from "./Theme";
+import Theme from "../dashboard/Theme"
 import { AiOutlineCaretDown, AiOutlineCaretUp, AiOutlineCheckSquare } from "react-icons/ai";
 import { FaCaretDown } from "react-icons/fa";
 
@@ -76,25 +76,25 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
 
   const logOutCombined = () => {
     logOut()
-    
+
   }
   return (
-    <div className="h-full w-full bg-lightPrimary dark:!bg-navy-900 duration-200">
+    <div className="h-full w-full bg-lightPrimary dark:!bg-zinc-900 duration-200">
       <main className={`mx-[12px] h-full flex-none transition-all md:pr-2`}>
-        <nav className="bg-lightPrimary dark:!bg-navy-900 py-6 sticky top-4 z-40 rounded-xl bg-white/10 p-2 backdrop-blur-xl dark:bg-[#0b14374d]">
+        <nav className="bg-lightPrimary dark:!bg-zinc-900 py-6 sticky top-4 z-40 rounded-xl bg-white/10 p-2 backdrop-blur-xl dark:bg-[#0b14374d]">
           {/* navbar div */}
           <div className="flex justify-between items-center ">
             {/* <div className="ml-[6px]">
-                  <p className="shrink text-[33px] capitalize text-navy-700 dark:text-white">
-                    <Link to="#" className="font-bold capitalize hover:text-navy-700 dark:hover:text-white">
+                  <p className="shrink text-[33px] capitalize text-zinc-700 dark:text-white">
+                    <Link to="#" className="font-bold capitalize hover:text-zinc-700 dark:hover:text-white">
                     </Link>
                   </p>
                 </div> */}
 
             {/* logo hissesi */}
             <div className="md:mx-[56px] mx-[20px] flex ">
-              <div className="font-poppins md:text-[26px] text-[16px] font-bold uppercase text-navy-700 dark:text-white">
-                <Link to="/" className="flex h-2.5 font-poppins font-bold uppercase text-navy-700 dark:text-white">
+              <div className="font-poppins md:text-[26px] text-[16px] font-bold uppercase text-zinc-700 dark:text-white">
+                <Link to="/" className="flex h-2.5 font-poppins font-bold uppercase text-zinc-700 dark:text-white">
                   <span className="font-medium">Opportu</span> <p>Land</p> </Link>
               </div>
               {/* theme hissesi */}
@@ -113,7 +113,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                     {/* <li className="lg:flex hidden">
                       <Link
                         to="/"
-                        className={`text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/") ? "text-yellow-500" : "text-navy-700 dark:text-white"
+                        className={`text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/") ? "text-yellow-500" : "text-zinc-700 dark:text-white"
                           } hover:text-yellow-500 dark:hover:text-yellow-500`}
                       >
                         Home
@@ -122,7 +122,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                     <li className="lg:flex hidden">
                       <Link
                         to="/contest"
-                        className={`text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/contest") ? "text-yellow-500" : "text-navy-700 dark:text-white"
+                        className={`text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/contest") ? "text-yellow-500" : "text-zinc-700 dark:text-white"
                           } hover:text-yellow-500 dark:hover:text-yellow-500`}
                       >
                         Contests
@@ -132,7 +132,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                     <li className="lg:flex hidden">
                       <Link
                         to="/remote?page=1"
-                        className={`text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/remote") ? "text-yellow-500" : "text-navy-700 dark:text-white"
+                        className={`text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/remote") ? "text-yellow-500" : "text-zinc-700 dark:text-white"
                           } hover:text-yellow-500 dark:hover:text-yellow-500`}
                       >
                         Remote
@@ -143,7 +143,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                     <Link
                       to="/statistics"
                       className={`font-bold text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${
-                        isActive("/statistics") ? "text-yellow-500" : "text-navy-700 dark:text-white"
+                        isActive("/statistics") ? "text-yellow-500" : "text-zinc-700 dark:text-white"
                       } hover:text-yellow-500 dark:hover:text-yellow-500`}
                     >
                       Statistics
@@ -153,7 +153,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                       <li>
                         <Link
                           to="/messages"
-                          className={`font-bold lg:flex hidden text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/messages") ? "text-yellow-500" : "text-navy-700 dark:text-white"
+                          className={`font-bold lg:flex hidden text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/messages") ? "text-yellow-500" : "text-zinc-700 dark:text-white"
                             } hover:text-yellow-500 dark:hover:text-yellow-500`}
                         >
                           Messages
@@ -164,7 +164,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                     {/* admin hissesindeki dahsboard */}
                     {user || googleUser ? (
                       <>
-                        <Menu as="div" className="lg:flex hidden relative text-left ">
+                        <Menu as="div" className="lg:flex px-4 relative text-left ">
                           <div>
                             <Menu.Button
                               style={{ background: theme.dark, color: theme.white }}
@@ -192,14 +192,14 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                                 className="py-1"
                                 style={{ background: theme.dark, color: theme.white }}
                               >
-                                <Menu.Item style={{ background: theme.dark, color: theme.white }}>
+                                {user && <Menu.Item style={{ background: theme.dark, color: theme.white }}>
                                   <Link
                                     to="edit"
                                     className="text-gray-700 block px-4 py-2 text-sm text-bold"
                                   >
                                     Edit Profile
                                   </Link>
-                                </Menu.Item>
+                                </Menu.Item>}
                                 <Menu.Item style={{ background: theme.dark, color: theme.white }}>
                                   <Link
                                     to="/"
@@ -219,7 +219,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                       userDataCompany.admin ? (
                         <Link
                           to="/admin/default"
-                          className={`ml-8 font-bold lg:flex hidden text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/admin/default") ? "text-yellow-500" : "text-navy-700 dark:text-white"
+                          className={`ml-8 font-bold lg:flex hidden text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/admin/default") ? "text-yellow-500" : "text-zinc-700 dark:text-white"
                             } hover:text-yellow-500 dark:hover:text-yellow-500`}
                         >
                           Dashboard
@@ -227,7 +227,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                       ) : (
                         <Link
                           to="/admin/my-contests"
-                          className={`ml-8 font-bold lg:flex hidden text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/admin/my-contests") ? "text-yellow-500" : "text-navy-700 dark:text-white"
+                          className={`ml-8 font-bold lg:flex hidden text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/admin/my-contests") ? "text-yellow-500" : "text-zinc-700 dark:text-white"
                             } hover:text-yellow-500 dark:hover:text-yellow-500`}
                         >
                           Dashboard
@@ -299,8 +299,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                               <p>in</p>
                             </div>
                             {/* acılan linkler */}
-                            <div className="absolute shadow-md -left-9 z-[10] hidden group-hover:block text-black bg-white dark:bg-navy-900 p-2">
-                              <div className="">
+                            <div className="absolute shadow-md -left-8 w-[75px] z-[10] rounded-md mt-2 ml-8 hidden group-hover:block text-black bg-white dark:bg-zinc-900 ">
                                 <li>
                                   <p
                                     onClick={handleNavigateStartUser}
@@ -315,7 +314,6 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                                     Register
                                   </p>
                                 </li>
-                              </div>
                             </div>
                           </div>
 
@@ -328,7 +326,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                               </span>
                             </div>
                             {/* acılan linkler */}
-                            <div className="absolute shadow-md -left-9 z-[10] hidden group-hover:block text-black bg-white dark:bg-navy-900 p-2">
+                            <div className="absolute shadow-md -left-1 rounded-md mt-2 ml-1 z-[10] w-32 hidden group-hover:block text-black bg-white dark:bg-zinc-900 p-2">
                               <div >
                                 <li>
                                   <p

@@ -4,7 +4,7 @@ import Navbar from "../../components/navbar";
 import Sidebar from "../../components/sidebar";
 import Footer from "../../components/footer/Footer";
 import routes from "../../routes.jsx";
-import AuthContext from '../../signin/TokenManager';
+import AuthContext from '../../signin/TokenManager.jsx';
 import Loading from '../../dashboard/Loading';
 
 export default function Admin(props) {
@@ -35,7 +35,7 @@ export default function Admin(props) {
 
       if (!token) {
         console.error('Access token is missing or invalid');
-        navigate('/signin');    
+        navigate('/signin');
         return;
       }
 
@@ -93,7 +93,7 @@ export default function Admin(props) {
 
       if (!token) {
         console.error('Access token is missing or invalid');
-        navigate('/signin');    
+        navigate('/signin');
         return;
       }
 

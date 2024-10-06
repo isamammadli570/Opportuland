@@ -7,7 +7,7 @@ import SidebarCard from "../../components/sidebar/componentsrtl/SidebarCard";
 import routes from "../../routes.jsx";
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
-import AuthContext from '../../signin/TokenManager';
+import AuthContext from '../../signin/TokenManager.jsx';
 
 
 const Sidebar = ({ open, onClose, user }) => {

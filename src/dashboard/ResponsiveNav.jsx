@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import Theme from "./Theme";
+import Theme from "../dashboard/Theme";
 import Footer from "./Footer";
 import { Fragment, useContext } from "react";
 import AuthContext from "../signin/TokenManager";
@@ -42,7 +42,7 @@ function ResponsiveNav({ setIsOpen }) {
       </div>
 
       <div className="flex justify-center py-20">
-        <ul className="flex items-center flex-col gap-12 ml-5">
+        <ul className="flex items-center flex-col gap-12 ml-5 mt-12">
           <li>
             <Link
               onClick={toggleNavbar}
@@ -67,7 +67,7 @@ function ResponsiveNav({ setIsOpen }) {
           <li>
             <Link
               onClick={toggleNavbar}
-              to="/remote"
+              to="/remote?page=1"
               className={`text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/remote") ? "text-yellow-500" : "text-navy-700 dark:text-white"
                 } hover:text-yellow-500 dark:hover:text-yellow-500`}
             >
@@ -75,7 +75,7 @@ function ResponsiveNav({ setIsOpen }) {
             </Link>
           </li>
 
-          {user || googleUser && (
+          {user && (
             <li>
               <Link
                 onClick={toggleNavbar}
@@ -119,14 +119,14 @@ function ResponsiveNav({ setIsOpen }) {
                       className="py-1"
                       style={{ background: theme.dark, color: theme.white }}
                     >
-                      <Menu.Item style={{ background: theme.dark, color: theme.white }}>
+                      {user && <Menu.Item style={{ background: theme.dark, color: theme.white }}>
                         <Link
                           to="edit"
                           className="text-gray-700 block px-4 py-2 text-sm text-bold"
                         >
                           Edit Profile
                         </Link>
-                      </Menu.Item>
+                      </Menu.Item>}
                       <Menu.Item style={{ background: theme.dark, color: theme.white }}>
                         <Link
                           to="applicant-signin"
@@ -167,9 +167,6 @@ function ResponsiveNav({ setIsOpen }) {
             </>
           )}
         </ul>
-      </div>
-      <div className="ml-32">
-        <Theme/>
       </div>
       <div className="mt-40">
         <Footer />

@@ -8,7 +8,7 @@
 .item {
   align-items: center;
   color: rgb(121, 121, 121);
-  cursor: pointer;
+  
   display: flex;
   font-size: 14px;
   height: 30px;
@@ -38,7 +38,7 @@
 
 .pagination {
   align-items: center;
-  background-color: #dddddd;
+  background-color: #bbc1c98a;
   display: flex;
   flex-direction: row;
   height: 40px;

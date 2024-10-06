@@ -197,92 +197,90 @@ const Messages = () => {
 
   return (
     <div className="flex h-full w-full">
-    <div className="h-full w-full bg-lightPrimary dark:!bg-navy-900 duration-200" >
-      <main
-        className={`mx-[12px] h-full flex-none transition-all md:pr-2`}
-      >
-        <div className="h-full">
-        
-    <>
-    <Card extra={"w-full h-full px-6 pb-6 sm:overflow-x-auto mt-5"}>
-      {/* <div className='bg-white min-h-[90vh]'> */}
-        {messageList?.length === 0 && (
-          <h2 className='text-2xl text-black'>You do not have any messages</h2>
-        )}
+      <div className="h-full w-full bg-lightPrimary dark:!bg-navy-900 duration-200" >
+        <main
+          className={`mx-[12px] h-full flex-none transition-all md:pr-2`}
+        >
+          <div className="h-full">
 
-        <div>
-        {isLoading ? <div className='fixed inset-0 z-50'> <Loading /> </div> : null}
-          {sortedMessages?.map((mess, idx) => {
-            const key = mess?._id + idx
-            const subjectLines = mess?.subject?.split('\n')
-            let truncatedSubject = ''
+            <>
+              <Card extra={"w-full h-full px-6 pb-6 sm:overflow-x-auto mt-5"}>
+                {/* <div className='bg-white min-h-[90vh]'> */}
+                {messageList?.length === 0 && (
+                  <h2 className='text-2xl text-black'>You do not have any messages</h2>
+                )}
 
-            if (subjectLines) {
-              const firstLine = subjectLines[0]
+                <div>
+                  {isLoading ? <div className='fixed inset-0 z-50'> <Loading /> </div> : null}
+                  {sortedMessages?.map((mess, idx) => {
+                    const key = mess?._id + idx
+                    const subjectLines = mess?.subject?.split('\n')
+                    let truncatedSubject = ''
 
-              if (firstLine.length > 75) {
-                truncatedSubject =
-                  firstLine.substring(0, 35) +
-                  '\n' +
-                  firstLine.substring(30) +
-                  '\n' +
-                  '...'
-              } else if (firstLine.length > 35) {
-                truncatedSubject =
-                  firstLine.substring(0, 35) + '\n' + firstLine.substring(30)
-              } else {
-                truncatedSubject = mess?.subject
-              }
-            }
+                    if (subjectLines) {
+                      const firstLine = subjectLines[0]
 
-            if (mess?.firstMessage) {
-              return (
-                <div
-                  key={key}
-                  onClick={() => handlePress(mess)}
-                  className={`${mess?.read ? '' : 'bg-navy-200'} m-2 `}
-                >
-                  <div className='w-[80%] m-auto flex items-center'>
-                    <div className='flex w-[800px]  p-4 m-h-[20px] border-b border-gray cursor-pointer'>
-                      <div>
-                        <h2
-                          className={`text-xl ${
-                            mess?.read ? '' : 'font-semibold'
-                          }`}
+                      if (firstLine.length > 75) {
+                        truncatedSubject =
+                          firstLine.substring(0, 35) +
+                          '\n' +
+                          firstLine.substring(30) +
+                          '\n' +
+                          '...'
+                      } else if (firstLine.length > 35) {
+                        truncatedSubject =
+                          firstLine.substring(0, 35) + '\n' + firstLine.substring(30)
+                      } else {
+                        truncatedSubject = mess?.subject
+                      }
+                    }
+
+                    if (mess?.firstMessage) {
+                      return (
+                        <div
+                          key={key}
+                          onClick={() => handlePress(mess)}
+                          className={`${mess?.read ? '' : 'bg-navy-200'} m-2 `}
                         >
-                          {mess?.companyId}
-                        </h2>
-                        <h2
-                          className={`text-lg ${
-                            mess?.read ? '' : 'font-semibold'
-                          }`}
-                        >
-                          {truncatedSubject}
-                        </h2>
-                        <h2 className={`${mess?.read ? '' : 'font-semibold'}`}>
-                          {mess?.body?.split('\n')[0] + '...'}
-                        </h2>
-                      </div>
-                    </div>
-                    <h2 className={`${mess?.read ? '' : 'font-semibold'}`}>
-                      {formatDate(mess.updatedAt)}
-                    </h2>
-                  </div>
+                          <div className='w-[80%] m-auto flex items-center'>
+                            <div className='flex w-[800px]  p-4 m-h-[20px] border-b border-gray cursor-pointer'>
+                              <div>
+                                <h2
+                                  className={`text-xl ${mess?.read ? '' : 'font-semibold'
+                                    }`}
+                                >
+                                  {mess?.companyId}
+                                </h2>
+                                <h2
+                                  className={`text-lg ${mess?.read ? '' : 'font-semibold'
+                                    }`}
+                                >
+                                  {truncatedSubject}
+                                </h2>
+                                <h2 className={`${mess?.read ? '' : 'font-semibold'}`}>
+                                  {mess?.body?.split('\n')[0] + '...'}
+                                </h2>
+                              </div>
+                            </div>
+                            <h2 className={`${mess?.read ? '' : 'font-semibold'}`}>
+                              {formatDate(mess.updatedAt)}
+                            </h2>
+                          </div>
+                        </div>
+                      )
+                    }
+                    return null
+                  })}
                 </div>
-              )
-            }
-            return null
-          })}
-        </div>
 
-        {isLoading ? <div className='fixed inset-0 z-50'> <Loading /> </div> : null}
-      {/* </div> */}
-      </Card>
-    </>
-    
-    </div>
-    </main>
-    </div></div>
+                {isLoading ? <div className='fixed inset-0 z-50'> <Loading /> </div> : null}
+                {/* </div> */}
+              </Card>
+            </>
+
+          </div>
+        </main>
+      </div></div>
   )
 }
 

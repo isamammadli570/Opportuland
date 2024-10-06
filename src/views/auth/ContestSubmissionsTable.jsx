@@ -81,7 +81,7 @@ const ContestSubmissionsTable = ({ contestId }) => {
   };
 
   const handleFileDownload = async (_id, fileId, filename) => {
-    console.log(_id,' ', fileId,' ', filename)
+    console.log(_id, ' ', fileId, ' ', filename)
     const token = secureLocalStorage.getItem("accessTokenCompany");
     if (!token) {
       alert("You need to sign in to see the files.");

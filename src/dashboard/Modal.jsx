@@ -15,7 +15,7 @@ function Modal({ toggleModal }) {
         const GoogleLoginRes = GoogleUserLogin(res);
         if (GoogleLoginRes) {
             toggleModal()
-            
+
         }
     };
 

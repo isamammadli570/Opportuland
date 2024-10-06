@@ -19,7 +19,6 @@ import AdminLayout from './layouts/admin';
 import { useState } from 'react';
 import ResponsiveNav from './dashboard/ResponsiveNav';
 import EmployerRegister from './signin/EmployerRegister';
-import ApplicantSignin from './signin/ApplicantSignin';
 import EmployerLogin from './signup/EmployerLogin';
 import SignIn from './signin/SignIn';
 import Signup from './signup/Signup';
@@ -27,7 +26,6 @@ import Signup from './signup/Signup';
 const MainApp = () => {
   const location = useLocation();
   const isAdminRoute = location.pathname.startsWith('/admin');
-
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -42,6 +40,7 @@ const MainApp = () => {
       >
         {isOpen && <ResponsiveNav setIsOpen={setIsOpen} />}
       </div>
+
       <Routes>
         <Route path='/:submissionId' element={<Feed />} />
         <Route path='/' element={<Feed />} />
@@ -55,7 +54,7 @@ const MainApp = () => {
         <Route path='/user-register' element={<Signup />} />
         <Route path='/login' element={<EmployerLogin />} />
         <Route path='/register' element={<EmployerRegister />} />
-        
+
         <Route path='/edit' element={<Edit />} />
         <Route path='/statistics' element={<Statistics />} />
         <Route path='/company' element={<CompanySignUp />} />

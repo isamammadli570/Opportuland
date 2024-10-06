@@ -42,7 +42,7 @@ const ComplexTableContests = ({ columnsData, tableData: initialTableData }) => {
       }
 
       console.log(`Approval changed for ${contest.contestName} to ${newValue ? 'Approve' : 'Disable'}`);
-      
+
       // Update state to reflect the changes
       setTableData(prevData =>
         prevData.map(item =>
@@ -66,9 +66,8 @@ const ComplexTableContests = ({ columnsData, tableData: initialTableData }) => {
           Header: `${companyName} Approval`,
           Cell: ({ value, row }) => (
             <button
-              className={`px-2 py-1 rounded ${
-                value ? 'bg-red-400 text-white' : 'bg-green-400 text-white'
-              }`}
+              className={`px-2 py-1 rounded ${value ? 'bg-red-400 text-white' : 'bg-green-400 text-white'
+                }`}
               onClick={() => handleApprovalChange(row.original, !value)}
               disabled={loading} // Disable the button when loading
             >
@@ -148,9 +147,9 @@ const ComplexTableContests = ({ columnsData, tableData: initialTableData }) => {
                               {cell.value}
                             </p>
                             {email && (
-                              <a 
-                                target="_blank" 
-                                rel="noopener noreferrer" 
+                              <a
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 href={`mailto:${email}?subject=${cell.value} Created a Contest`}  /////// change the subject
                                 className="text-base font-medium text-gray-600 hover:text-gray-600"
                               >
@@ -191,9 +190,8 @@ const ComplexTableContests = ({ columnsData, tableData: initialTableData }) => {
                       } else if (cell.column.Header === `${companyName} Approval`) {
                         data = (
                           <button
-                            className={`px-2 py-1 rounded ${
-                              cell.value ? 'bg-red-400 text-white' : 'bg-green-400 text-white'
-                            }`}
+                            className={`px-2 py-1 rounded ${cell.value ? 'bg-red-400 text-white' : 'bg-green-400 text-white'
+                              }`}
                             onClick={() => handleApprovalChange(row.original, !cell.value)}
                             disabled={loading} // Disable the button when loading
                           >
@@ -206,7 +204,7 @@ const ComplexTableContests = ({ columnsData, tableData: initialTableData }) => {
                             {cell.value.split('T')[0]}
                           </p>
                         );
-                      } 
+                      }
                       // else if (cell.column.Header === "PROGRESS") {
                       //   data = <Progress width="w-[108px]" value={cell.value} />;
                       // }

@@ -158,7 +158,7 @@ const ComplexTable = ({ columnsData, tableData: initialTableData, onRowClick }) 
                             </p>
                           </div>
                         );
-                      } 
+                      }
                       // else if (cell.column.Header === `${companyName} Approval`) {
                       //   data = (
                       //     <div className="flex items-center gap-2 whitespace-normal break-words max-w-xs">

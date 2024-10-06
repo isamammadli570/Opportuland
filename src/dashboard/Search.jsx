@@ -4,11 +4,10 @@ export default function Search({
   onSearch,
   searchQuery,
   setSearchQuery,
-  onPageChange,
+  /* onPageChange, */
 }) {
   const handleSearchClick = () => {
     onSearch(searchQuery)
-    onPageChange(1)
   }
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {

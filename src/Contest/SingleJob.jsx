@@ -133,7 +133,7 @@ const SingleJob = () => {
           );
           setHistoryLog(historyResponse?.data?.swipeLog);
 
-        } catch (error){
+        } catch (error) {
           /* const token = getAccessTokenFromMemoryGoogle(); */
           const historyResponse = await axios.get(
             `${import.meta.env.VITE_HOST}/swipedHistory/getHistoryLogGoogle/?jobId=${id}`,
@@ -155,7 +155,7 @@ const SingleJob = () => {
   }, [id, getAccessTokenFromMemory, getAccessTokenFromMemoryGoogle]);
 
   const handleApplyClick = async () => {
-    
+
     if (job.applyLink && isValidUrl(job.applyLink)) {
       window.open(job.applyLink, '_blank');
     }

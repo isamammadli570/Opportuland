@@ -42,7 +42,7 @@ const ComplexTable = ({ columnsData, tableData: initialTableData }) => {
       }
 
       console.log(`Approval changed for ${user.name} to ${newValue ? 'Approve' : 'Disable'}`);
-      
+
       // Update state to reflect the changes
       setTableData(prevData =>
         prevData.map(item =>
@@ -66,9 +66,8 @@ const ComplexTable = ({ columnsData, tableData: initialTableData }) => {
           Header: `${companyName} Approval`,
           Cell: ({ value, row }) => (
             <button
-              className={`px-2 py-1 rounded ${
-                value ? 'bg-red-400 text-white' : 'bg-green-400 text-white'
-              }`}
+              className={`px-2 py-1 rounded ${value ? 'bg-red-400 text-white' : 'bg-green-400 text-white'
+                }`}
               onClick={() => handleApprovalChange(row.original, !value)}
               disabled={loading} // Disable the button when loading
             >
@@ -148,10 +147,10 @@ const ComplexTable = ({ columnsData, tableData: initialTableData }) => {
                               {cell.value}
                             </p>
                             {email && (
-                              <a 
-                                target="_blank" 
-                                rel="noopener noreferrer" 
-                                href={`mailto:${email}?subject=OpportuLand User Registration`} 
+                              <a
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                href={`mailto:${email}?subject=OpportuLand User Registration`}
                                 className="text-base font-medium text-gray-600 hover:text-gray-600"
                               >
                                 <svg className="w-5 h-5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -191,9 +190,8 @@ const ComplexTable = ({ columnsData, tableData: initialTableData }) => {
                       } else if (cell.column.Header === `${companyName} Approval`) {
                         data = (
                           <button
-                            className={`px-2 py-1 rounded ${
-                              cell.value ? 'bg-red-400 text-white' : 'bg-green-400 text-white'
-                            }`}
+                            className={`px-2 py-1 rounded ${cell.value ? 'bg-red-400 text-white' : 'bg-green-400 text-white'
+                              }`}
                             onClick={() => handleApprovalChange(row.original, !cell.value)}
                             disabled={loading} // Disable the button when loading
                           >

@@ -102,10 +102,10 @@ export default function Tables() {
         )}
       </div>
 
-      <ContestDetailsModal 
-        isOpen={isModalOpen} 
-        onClose={handleCloseModal} 
-        contest={selectedContest} 
+      <ContestDetailsModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        contest={selectedContest}
       />
     </div>
   );

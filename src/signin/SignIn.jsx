@@ -40,7 +40,7 @@ const SignIn = () => {
                   onClick={(e) => {
                     e.stopPropagation()
                   }}
-                  className='dark:!bg-navy-800 dark:text-white dark:border-none relative my-8 max-w-[600px] w-full h-full sm:h-fit flex flex-col items-center py-5 mt-16 px-4 sm:p-12 shadow-md border bg-white sm:rounded-xl gap-x-12 lg:gap-x-32 gap-y-6 sm:gap-y-10'
+                  className='dark:!bg-navy-800 dark:text-white dark:border-none relative my-8 max-w-[600px] mt-28 w-full h-full sm:h-fit flex flex-col items-center py-5 mt-16 px-4 sm:p-12 shadow-md border bg-white sm:rounded-xl gap-x-12 lg:gap-x-32 gap-y-6 sm:gap-y-10'
                 >
                   <button
                     onClick={() => {
