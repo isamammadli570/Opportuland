@@ -4,7 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* pagination css */
+/*! pagination css */
 .item {
   align-items: center;
   color: rgb(121, 121, 121);
@@ -61,7 +61,7 @@
   position: absolute;
   width: 70px;
 }
-
+/*! pagination css */
 
 @layer base {
 	html {

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import Table from './Table'
 import Search from './Search'
-import Loading from '../Loading/Loading'
+import Loading from '../../ui/Loading/Loading'
 import { useSearchParams } from 'react-router-dom'
 
 export default function Main() {

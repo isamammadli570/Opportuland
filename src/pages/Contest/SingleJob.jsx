@@ -1,14 +1,14 @@
 import axios from "axios";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { useForm } from "react-hook-form";
 import AuthContext from "../../contexts/TokenManager";
-import Loading from "../Loading/Loading";
+import Loading from "../../ui/Loading/Loading";
 import Card from "../../components/card";
 import { useDropzone } from "react-dropzone";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilePdf, faFileExcel, faFileImage, faFileAlt } from '@fortawesome/free-solid-svg-icons';
-import Modal from "../Modal/Modal";
+import Modal from "../../ui/Modal/Modal";
 
 const SingleJob = () => {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ const SingleJob = () => {
   const [job, setJob] = useState(null);
   const [user, setUser] = useState({});
   const [applyVisible, setApplyVisible] = useState(true);
-  const [coverLetter, setCoverLetter] = useState("");
+  /* const [coverLetter, setCoverLetter] = useState(""); */
   const [successMessage, setSuccessMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [historyLog, setHistoryLog] = useState(null);

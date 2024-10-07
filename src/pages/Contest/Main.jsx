@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import Table from './Table'
 import Search from './Search'
-import Loading from '../Loading/Loading'  // Import the Loading component
+import Loading from '../../ui/Loading/Loading'  // Import the Loading component
 
 
 import React from "react";

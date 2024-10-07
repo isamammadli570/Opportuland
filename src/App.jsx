@@ -2,27 +2,27 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import Footer from './ui/Footer/Footer';
 import { TokenManager } from './contexts/TokenManager';
 import Error from './Error/Error';
-import SingleJob from './ui/Remote/SingleJob';
+import SingleJob from './pages/Remote/SingleJob';
 import Messages from './ui/Messages/Messages';
 import ChatArea from './ui/Messages/ChatArea';
 import Sidebar from './ui/Sidebar/Sidebar';
-import Main from './ui/Remote/Main';
-import Local from './ui/Local/Main';
+import Main from './pages/Remote/Main';
+import Local from './pages/Local/Main';
 import Edit from './editProfile/Edit';
-import Contests from './ui/Contest/Main'
-import Feed from "./ui/Feed/Feed"
-import ContestItem from './ui/Contest/ContestItem';
-import SingleJobContest from './/ui/Contest/SingleJob'
-import Statistics from './Statistics/Statistics';
+import Contests from './pages/Contest/Main'
+import Feed from "./pages/Feed/Feed"
+import ContestItem from './pages/Contest/ContestItem';
+import SingleJobContest from './pages/Contest/SingleJob'
+import Statistics from './pages/Statistics/Statistics';
 import CompanySignUp from './Company/CompanySignUp';
 import DataWebsite from './Company/DataWebsite';
 import AdminLayout from './layouts/admin';
 import { useState } from 'react';
 import ResponsiveNav from './ui/Sidebar/ResponsiveNav';
-import EmployerRegister from './signin/EmployerRegister';
-import EmployerLogin from './signup/EmployerLogin';
-import SignIn from './signin/SignIn';
-import Signup from './signup/Signup';
+import EmployerRegister from './Registration/Employer/register/EmployerRegister';
+import EmployerLogin from './Registration/Employer/login/EmployerLogin';
+import UserLogin from './Registration/User/login/UserLogin';
+import UserRegister from './Registration/User/register/UserRegister';
 
 const MainApp = () => {
   const location = useLocation();
@@ -47,7 +47,7 @@ const MainApp = () => {
         <Route path='/' element={<Feed />} />
 
         <Route path='/remote' element={<Main />} />
-        <Route path='/local' element={<Local />}/>
+        <Route path='/local' element={<Local />} />
         <Route path='/job/:subject/:id' element={<SingleJob />} />
 
         <Route path='/contest' element={<Contests />} />
@@ -57,8 +57,8 @@ const MainApp = () => {
         <Route path='/messages' element={<Messages />} />
         <Route path='/messages/:id' element={<ChatArea />} />
 
-        <Route path='/user-login' element={<SignIn />} />
-        <Route path='/user-register' element={<Signup />} />
+        <Route path='/user-login' element={<UserLogin />} />
+        <Route path='/user-register' element={<UserRegister />} />
         <Route path='/login' element={<EmployerLogin />} />
         <Route path='/register' element={<EmployerRegister />} />
 

@@ -1,8 +1,8 @@
-import Close from "../assets/icons/close.svg";
+import Close from "../../../assets/icons/close.svg";
 import { useState } from "react";
-import Loading from "../ui/Loading/Loading";
-import { PrivacyTitle, PrivacyText, PrivacyDate } from "../PrivacyText";
-import { text, title, date } from "../Terms";
+import Loading from "../../../ui/Loading/Loading";
+import { PrivacyTitle, PrivacyText, PrivacyDate } from "../../../PrivacyText";
+import { text, title, date } from "../../../Terms";
 
 export default function Form({
   formData,

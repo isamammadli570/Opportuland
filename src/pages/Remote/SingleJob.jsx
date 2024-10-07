@@ -6,7 +6,7 @@ import { theme } from "../../theme/theme";
 import { useNavigate } from "react-router-dom";
 import RegenerateResume from "../../dashboard/RegenerateResume";
 import RegenerateText from "../../dashboard/RegenerateText";
-import Loading from "../Loading/Loading";
+import Loading from "../../ui/Loading/Loading";
 import Card from "../../components/card"
 
 const SingleJob = () => {

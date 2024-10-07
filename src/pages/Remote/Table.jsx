@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react'
 import AuthContext from '../../contexts/TokenManager'
 import { Link } from 'react-router-dom'
-import Loading from '../Loading/Loading'
+import Loading from '../../ui/Loading/Loading'
 import axios from 'axios'
 import Card from "../../components/card";
 import ReactPaginate from "react-paginate"
@@ -39,6 +39,7 @@ export default function Table({
       setHistoryLog([]);
     }
   }, []);
+  
   return (
     <>
       <Card extra={"w-full h-full px-6 pb-6 sm:overflow-x-auto mt-5  "}>
@@ -91,7 +92,7 @@ export default function Table({
                           } else if (job?.required_experience_years > 1) {
                             return `${job.required_experience_years} years`;
                           } else {
-                            return 'Not Available'; // For any other unexpected case
+                            return 'Not Available'; 
                           }
                         })()}
                       </h3>

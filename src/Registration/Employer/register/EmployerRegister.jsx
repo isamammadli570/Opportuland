@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Modal from "react-modal";
-import ViewEye from "../assets/icons/view.png";
-import HideEye from "../assets/icons/hide.png";
-import Loading from '../ui/Loading/Loading.jsx';
+import ViewEye from "../../../assets/icons/view.png";
+import HideEye from "../../../assets/icons/hide.png";
+import Loading from '../../../ui/Loading/Loading.jsx';
 
 function EmployerRegister() {
     const navigate = useNavigate();
@@ -124,7 +124,6 @@ function EmployerRegister() {
             setLoading(false);
         }
     };
-
 
     useEffect(() => {
         if (isOtp && otpExpires) {

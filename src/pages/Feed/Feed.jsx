@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
-import Loading from '../Loading/Loading';
+import Loading from '../../ui/Loading/Loading';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight, faCaretUp, faLink } from '@fortawesome/free-solid-svg-icons';
 import AuthContext from '../../contexts/TokenManager';
@@ -13,7 +13,7 @@ import {
   AccordionPanel,
   AccordionIcon,
 } from "@chakra-ui/accordion"
-import Modal from '../Modal/Modal';
+import Modal from '../../ui/Modal/Modal';
 
 const dummyToken = "asd";
 

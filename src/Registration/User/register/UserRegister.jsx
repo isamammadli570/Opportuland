@@ -1,7 +1,7 @@
 import Form from "./Form";
 import PdfUpload from "./PdfUpload";
 import { useState } from "react";
-import { yearsOptions, countryList } from "../data";
+import { yearsOptions, countryList } from "../../../data";
 import secureLocalStorage from "react-secure-storage";
 import { useNavigate } from "react-router-dom";
 
@@ -87,7 +87,6 @@ export default function Signup() {
     try {
       const formData = new FormData();
       formData.append("file", data, resumeName);
-
 
       const response = await fetch(
         `${import.meta.env.VITE_HOST}/resume/upload`,
