@@ -29,8 +29,8 @@ function ResponsiveNav({ setIsOpen }) {
 
   return (
     <div>
-      <div className="ml-8 mt-10 font-poppins text-[26px] font-bold uppercase text-navy-700 dark:text-white">
-        <Link to="/" className="mt-1 ml-1 h-2.5 font-poppins text-[26px] font-bold uppercase text-navy-700 dark:text-white">
+      <div className="ml-8 mt-10 font-poppins text-[26px] font-bold uppercase text-zinc-700 dark:text-white">
+        <Link to="/" className="mt-1 ml-1 h-2.5 font-poppins text-[26px] font-bold uppercase text-zinc-700 dark:text-white">
           <span className="font-medium ">Opportu</span> Land </Link>
       </div>
 
@@ -47,7 +47,7 @@ function ResponsiveNav({ setIsOpen }) {
             <Link
               onClick={toggleNavbar}
               to="/"
-              className={`text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/") ? "text-yellow-500" : "text-navy-700 dark:text-white"
+              className={`text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/") ? "text-yellow-500" : "text-zinc-700 dark:text-white"
                 } hover:text-yellow-500 dark:hover:text-yellow-500`}
             >
               Home
@@ -57,7 +57,7 @@ function ResponsiveNav({ setIsOpen }) {
             <Link
               onClick={toggleNavbar}
               to="/contest"
-              className={`text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/contest") ? "text-yellow-500" : "text-navy-700 dark:text-white"
+              className={`text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/contest") ? "text-yellow-500" : "text-zinc-700 dark:text-white"
                 } hover:text-yellow-500 dark:hover:text-yellow-500`}
             >
               Contests
@@ -68,7 +68,7 @@ function ResponsiveNav({ setIsOpen }) {
             <Link
               onClick={toggleNavbar}
               to="/local?page=1"
-              className={`text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/local") ? "text-yellow-500" : "text-navy-700 dark:text-white"
+              className={`text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/local") ? "text-yellow-500" : "text-zinc-700 dark:text-white"
                 } hover:text-yellow-500 dark:hover:text-yellow-500`}
             >
               Local
@@ -79,7 +79,7 @@ function ResponsiveNav({ setIsOpen }) {
             <Link
               onClick={toggleNavbar}
               to="/remote?page=1"
-              className={`text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/remote") ? "text-yellow-500" : "text-navy-700 dark:text-white"
+              className={`text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/remote") ? "text-yellow-500" : "text-zinc-700 dark:text-white"
                 } hover:text-yellow-500 dark:hover:text-yellow-500`}
             >
               Remote
@@ -91,7 +91,7 @@ function ResponsiveNav({ setIsOpen }) {
               <Link
                 onClick={toggleNavbar}
                 to="/messages"
-                className={`font-bold text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/messages") ? "text-yellow-500" : "text-navy-700 dark:text-white"
+                className={`font-bold text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/messages") ? "text-yellow-500" : "text-zinc-700 dark:text-white"
                   } hover:text-yellow-500 dark:hover:text-yellow-500`}
               >
                 Messages
@@ -157,7 +157,7 @@ function ResponsiveNav({ setIsOpen }) {
             userDataCompany.admin ? (
               <Link
                 to="/admin/default"
-                className={`ml-8 font-bold text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/admin/default") ? "text-yellow-500" : "text-navy-700 dark:text-white"
+                className={`ml-8 font-bold text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/admin/default") ? "text-yellow-500" : "text-zinc-700 dark:text-white"
                   } hover:text-yellow-500 dark:hover:text-yellow-500`}
               >
                 Dashboard
@@ -165,7 +165,7 @@ function ResponsiveNav({ setIsOpen }) {
             ) : (
               <Link
                 to="/admin/my-contests"
-                className={`ml-8 font-bold text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/admin/my-contests") ? "text-yellow-500" : "text-navy-700 dark:text-white"
+                className={`ml-8 font-bold text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/admin/my-contests") ? "text-yellow-500" : "text-zinc-700 dark:text-white"
                   } hover:text-yellow-500 dark:hover:text-yellow-500`}
               >
                 Dashboard

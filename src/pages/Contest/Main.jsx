@@ -3,11 +3,6 @@ import Table from './Table'
 import Search from './Search'
 import Loading from '../../ui/Loading/Loading'  // Import the Loading component
 
-
-import React from "react";
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
-
-
 export default function Contests() {
   const [isOpen, setIsOpen] = useState(false)
   const [jobData, setJobData] = useState([])
@@ -82,7 +77,7 @@ export default function Contests() {
 
   return (
     <div className="flex h-full w-full">
-      <div className="h-full w-full bg-lightPrimary dark:!bg-navy-900 duration-200">
+      <div className="h-full w-full bg-lightPrimary dark:!bg-zinc-900 duration-200">
         <main
           className={`mx-[12px] h-full flex-none transition-all md:pr-2`}
         >
@@ -117,7 +112,6 @@ export default function Contests() {
                 )}
               </div>
             </div>
-            {/* <Footer /> */}
           </div>
         </main>
       </div>

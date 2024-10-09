@@ -407,7 +407,7 @@ const SingleJob = () => {
 
   return (
     <div className="flex h-full w-full">
-      <div className="h-full w-full bg-lightPrimary dark:!bg-navy-900 duration-200">
+      <div className="h-full w-full bg-lightPrimary dark:!bg-zinc-900 duration-200">
         <main className="mx-[12px] h-full flex-none transition-all md:pr-2">
           <div className="h-full">
             <Card extra="w-full h-full px-6 pb-6 sm:overflow-x-auto mt-5">
@@ -444,13 +444,13 @@ const SingleJob = () => {
                           name="message"
                           id="message"
                           {...register("message", { required: "Message is required" })}
-                          className="shadow appearance-none border rounded w-full py-10 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-navy-900 dark:text-white"
+                          className="shadow appearance-none border rounded w-full py-10 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-zinc-900 dark:text-white"
                         ></textarea>
                         {errors.message && <p className="text-red-500 text-xs italic">{errors.message.message}</p>}
                       </div>
                       <div className="mb-4">
                         <label className="block text-gray-700 text-lg font-bold mb-2 dark:text-white mt-4" htmlFor="fileUpload">Upload Files</label>
-                        <div {...getRootProps()} className={`border-dashed border-2 border-gray-400 p-6 text-center cursor-pointer transition bg-white dark:bg-navy-800 ${isDragActive ? 'bg-gray-100 dark:bg-gray-700' : ''}`}>
+                        <div {...getRootProps()} className={`border-dashed border-2 border-gray-400 p-6 text-center cursor-pointer transition bg-white dark:bg-zinc-800 ${isDragActive ? 'bg-gray-100 dark:bg-gray-700' : ''}`}>
                           <input {...getInputProps()} />
                           <div className="text-center">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 mx-auto text-gray-400" viewBox="0 0 20 20" fill="currentColor">

@@ -296,14 +296,14 @@ export default function Signup() {
   return (
 
     <div className="flex h-full w-full">
-      <div className="h-full w-full bg-lightPrimary dark:!bg-navy-900">
+      <div className="h-full w-full bg-lightPrimary dark:!bg-zinc-900">
         <main
           className={`mx-[12px] h-full flex-none transition-all md:pr-2`}
         >
           <div className="h-full">
             <div className="w-full min-h-screen flex items-center justify-center">
               <div className="w-full h-full relative flex justify-center items-center">
-                <div className="relative mb-28 max-w-[600px] w-full h-[600px] flex flex-col items-center py-5 px-4 sm:p-16 shadow-md border bg-white sm:rounded-xl gap-x-12 lg:gap-x-32 gap-y-6 sm:gap-y-10">
+                <div className="dark:bg-zinc-800 dark:text-white relative mb-28 max-w-[600px] w-full h-[600px] flex flex-col items-center py-5 px-4 sm:p-16 shadow-md bg-white sm:rounded-xl gap-x-12 lg:gap-x-32 gap-y-6 sm:gap-y-10">
 
                   {step === 1 && (
                     <PdfUpload

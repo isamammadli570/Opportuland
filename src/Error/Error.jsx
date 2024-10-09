@@ -4,7 +4,7 @@ export default function Error() {
 
   return (
     <div className="flex h-full w-full">
-      <div className="h-full w-full bg-lightPrimary dark:!bg-navy-900 duration-200">
+      <div className="h-full w-full bg-lightPrimary dark:!bg-zinc-900 duration-200">
         <main
           className={`mx-[12px] h-full flex-none transition-all md:pr-2`}
         >

@@ -6,7 +6,7 @@ import SingleJob from './pages/Remote/SingleJob';
 import Messages from './ui/Messages/Messages';
 import ChatArea from './ui/Messages/ChatArea';
 import Sidebar from './ui/Sidebar/Sidebar';
-import Main from './pages/Remote/Main';
+import Remote from './pages/Remote/Main';
 import Local from './pages/Local/Main';
 import Edit from './editProfile/Edit';
 import Contests from './pages/Contest/Main'
@@ -35,8 +35,8 @@ const MainApp = () => {
       <div
         className={
           isOpen
-            ? "fixed top-0 right-0 w-[300px] h-full bg-lightPrimary dark:!bg-navy-900 z-40 duration-100"
-            : "fixed top-0 right-[-100%] w-[300px] h-full bg-lightPrimary dark:!bg-navy-900 z-10 duration-100"
+            ? "fixed top-0 right-0 w-[300px] h-full bg-lightPrimary dark:!bg-zinc-900 z-40 duration-100"
+            : "fixed top-0 right-[-100%] w-[300px] h-full bg-lightPrimary dark:!bg-zinc-900 z-10 duration-100"
         }
       >
         {isOpen && <ResponsiveNav setIsOpen={setIsOpen} />}
@@ -46,7 +46,7 @@ const MainApp = () => {
         <Route path='/:submissionId' element={<Feed />} />
         <Route path='/' element={<Feed />} />
 
-        <Route path='/remote' element={<Main />} />
+        <Route path='/remote' element={<Remote />} />
         <Route path='/local' element={<Local />} />
         <Route path='/job/:subject/:id' element={<SingleJob />} />
 
@@ -64,8 +64,8 @@ const MainApp = () => {
 
         <Route path='/edit' element={<Edit />} />
         <Route path='/statistics' element={<Statistics />} />
-        <Route path='/company' element={<CompanySignUp />} />
-        <Route path='/company-step-2' element={<DataWebsite />} />
+        {/* <Route path='/company' element={<CompanySignUp />} />
+        <Route path='/company-step-2' element={<DataWebsite />} /> */}
 
         <Route path="/admin/*" element={<AdminLayout />} />
         <Route path='/*' element={<Error />} />

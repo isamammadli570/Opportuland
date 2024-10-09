@@ -354,7 +354,7 @@ const Feed = () => {
 
   return (
     <div className="flex h-full w-full">
-      <div className="h-full w-full bg-lightPrimary dark:bg-navy-900 duration-200">
+      <div className="h-full w-full bg-lightPrimary dark:bg-zinc-900 duration-200">
         <main className="mx-[12px] h-full flex-none transition-all md:pr-2">
           <div className="h-full">
             <div className="min-h-screen w-full relative">
@@ -370,9 +370,9 @@ const Feed = () => {
                   return (
                     <div
                       key={submissionIndex}
-                      className="bg-white dark:bg-navy-700 duration-200 shadow rounded-lg p-6 mb-4 ml-6">
+                      className="bg-white dark:bg-zinc-700 duration-200 shadow rounded-lg p-6 mb-4 ml-6">
                       <div className="flex items-center mb-2">
-                        <h2 className="md:text-xl font-bold text-navy-900 dark:text-white">{formatFullname(submission.fullname)}</h2>
+                        <h2 className="md:text-xl font-bold text-zinc-900 dark:text-white">{formatFullname(submission.fullname)}</h2>
                         {submission.userLinkedIn && (
                           <a href={submission.userLinkedIn} target="_blank" rel="noopener noreferrer" className="ml-2 text-base font-medium dark:text-zinc-300 text-zinc-600">
                             <svg className="w-5 h-5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -380,15 +380,15 @@ const Feed = () => {
                             </svg>
                           </a>
                         )}
-                        <span className="mx-2 text-navy-500 dark:text-navy-300">|</span>
-                        <span className="text-navy-900 text-sm  dark:text-white">{submission.companyName}</span>
-                        <span className="mx-1 text-navy-500 dark:text-navy-300">•</span>
+                        <span className="mx-2 text-zinc-500 dark:text-zinc-300">|</span>
+                        <span className="text-zinc-900 text-sm  dark:text-white">{submission.companyName}</span>
+                        <span className="mx-1 text-zinc-500 dark:text-zinc-300">•</span>
                         <a href={`/contest/${cleanJobName}/${submission.jobId}`} className="text-blue-500 text-sm">{cleanJobName}</a>
                       </div>
 
                       <div className="flex flex-row justify-between mt-4">
                         <div>
-                          {/* <div className="text-navy-700 dark:text-navy-300 duration-200">
+                          {/* <div className="text-zinc-700 dark:text-zinc-300 duration-200">
                             {expandedMessages[submissionIndex] ? (
                               <>
                                 {submission.message.split('\n').map((paragraph, index) => (
@@ -465,15 +465,15 @@ const Feed = () => {
                                     ) : null}
                                     {submission.files.length > 1 && (
                                       <>
-                                        <button onClick={() => handlePreviousMedia(submissionIndex)} className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-navy-800 text-white p-2 rounded-full">
+                                        <button onClick={() => handlePreviousMedia(submissionIndex)} className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-zinc-800 text-white p-2 rounded-full">
                                           <FontAwesomeIcon icon={faArrowLeft} />
                                         </button>
-                                        <button onClick={() => handleNextMedia(submissionIndex)} className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-navy-800 text-white p-2 rounded-full">
+                                        <button onClick={() => handleNextMedia(submissionIndex)} className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-zinc-800 text-white p-2 rounded-full">
                                           <FontAwesomeIcon icon={faArrowRight} />
                                         </button>
                                       </>
                                     )}
-                                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 bg-navy-800 text-white p-1 rounded">
+                                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 bg-zinc-800 text-white p-1 rounded">
                                       {mediaIndices[submissionIndex] + 1} / {submission.files.length}
                                     </div>
                                   </>

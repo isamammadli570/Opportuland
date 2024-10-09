@@ -28,7 +28,7 @@ function Modal({ toggleModal }) {
                 <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
                     <div
                         onClick={(e) => e.stopPropagation()}
-                        className='dark:bg-navy-800 relative bg-white dark:text-white
+                        className='dark:bg-zinc-800 relative bg-white dark:text-white
                             my-8 max-w-[600px] sm:h-fit flex flex-col items-center py-5 px-4 sm:p-12 shadow-md border dark:border-none
                             sm:rounded-xl gap-x-12 lg:gap-x-32 gap-y-6 sm:gap-y-10 mt-28'
                     >

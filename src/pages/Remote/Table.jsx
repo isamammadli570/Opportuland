@@ -39,7 +39,7 @@ export default function Table({
       setHistoryLog([]);
     }
   }, []);
-  
+
   return (
     <>
       <Card extra={"w-full h-full px-6 pb-6 sm:overflow-x-auto mt-5  "}>
@@ -92,7 +92,7 @@ export default function Table({
                           } else if (job?.required_experience_years > 1) {
                             return `${job.required_experience_years} years`;
                           } else {
-                            return 'Not Available'; 
+                            return 'Not Available';
                           }
                         })()}
                       </h3>
@@ -113,7 +113,7 @@ export default function Table({
                         >
                           <button
                             className='text-white lg:w-32 md:w-24 w-16 px-3 py-2 bg-yellow-500font-bold rounded-md
-                            bg-yellow-500 duration-200 hover:bg-yellow-600'
+                            bg-yellow-500 duration-200 border-r hover:bg-yellow-600 '
                           >
                             View
                           </button>
@@ -130,12 +130,12 @@ export default function Table({
 
       <div className='mt-4 flex justify-center'>
         <ReactPaginate
-          activeClassName={'item active '}
-          previousClassName={"item previous"}
-          nextClassName={"item next "}
-          pageClassName={'item pagination-page '}
-          containerClassName={'pagination'}
-          disabledClassName={'disabled-page'}
+          activeClassName={'flex justify-center items-center w-[30px] h-[30px] text-zinc-700 border border-zinc-700 rounded-full'}
+          previousClassName={"flex justify-center items-center w-[30px] h-[30px] text-zinc-700 border-r border-zinc-900 absolute left-0 px-10"}
+          nextClassName={"flex justify-center items-center w-[30px] h-[30px] text-zinc-700 border-l border-zinc-900 absolute right-0 px-10"}
+          pageClassName={'flex justify-center items-center w-[30px] h-[30px] text-zinc-700 '}
+          containerClassName={'flex items-center bg-zinc-200 w-[700px] h-[40px] justify-center flex-row list-none relative rounded-md'}
+          disabledClassName={'text-gray-300'}
           previousLabel={<GrFormPrevious style={{ fontSize: 18, width: 150 }} />}
           nextLabel={<MdNavigateNext style={{ fontSize: 18, width: 150 }} />}
           breakLabel={'. . .'}

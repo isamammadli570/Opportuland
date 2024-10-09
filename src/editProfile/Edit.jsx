@@ -349,7 +349,7 @@ export default function Edit() {
 
   return (
     <div className="flex h-full w-full">
-      <div className="h-full w-full bg-lightPrimary dark:!bg-navy-900 duration-200">
+      <div className="h-full w-full bg-lightPrimary dark:!bg-zinc-900 duration-200">
         <main
           className={`mx-[12px] h-full flex-none transition-all md:pr-2`}
         >
@@ -358,7 +358,7 @@ export default function Edit() {
               <div className="flex items-center justify-center">
                 <div className="bg-white mx-12 my-16 py-10  rounded-xl shadow-lg px-10  w-[90%]">
                   {/* title */}
-                  <h3 className="text-navy-900 text-center sm:text-start w-fit text-3xl lg:text-[40px] font-medium pb-2 md:px-12 mb-12  m-auto">
+                  <h3 className="text-zinc-900 text-center sm:text-start w-fit text-3xl lg:text-[40px] font-medium pb-2 md:px-12 mb-12  m-auto">
                     Update Profile
                   </h3>
                   {showAlert && (
@@ -461,7 +461,7 @@ export default function Edit() {
                             <div className="flex flex-col">
                               <label
                                 htmlFor="avatar"
-                                className="text-lg font-medium text-navy-900 mb-1"
+                                className="text-lg font-medium text-zinc-900 mb-1"
                               >
                                 Update Resume
                               </label>
@@ -493,7 +493,7 @@ export default function Edit() {
                             <div className="flex flex-col">
                               <label
                                 htmlFor="avatar"
-                                className="text-lg font-medium text-navy-900 my-3"
+                                className="text-lg font-medium text-zinc-900 my-3"
                               >
                                 Current Resume
                               </label>
@@ -538,7 +538,7 @@ export default function Edit() {
                           >
                             <div className="flex flex-col w-full sm:col-span-2">
                               <label
-                                className="text-lg font-medium text-navy-900 mb-1"
+                                className="text-lg font-medium text-zinc-900 mb-1"
                                 htmlFor="coverLetter"
                               >
                                 Cover letter
@@ -645,7 +645,7 @@ export default function Edit() {
                             <div className="grid w-full grid-cols-1 sm:grid-cols-2 gap-8">
                               <div className="flex flex-col w-full">
                                 <label
-                                  className="text-lg font-medium text-navy-900 mb-1"
+                                  className="text-lg font-medium text-zinc-900 mb-1"
                                   htmlFor="email"
                                 >
                                   Email
@@ -662,7 +662,7 @@ export default function Edit() {
                               </div>
                               <div className="flex flex-col w-full">
                                 <label
-                                  className="text-lg font-medium text-navy-900 mb-1"
+                                  className="text-lg font-medium text-zinc-900 mb-1"
                                   htmlFor="phone"
                                 >
                                   Phone number
@@ -679,7 +679,7 @@ export default function Edit() {
                               </div>
                               <div className="flex flex-col w-full">
                                 <label
-                                  className="text-lg font-medium text-navy-900 mb-1"
+                                  className="text-lg font-medium text-zinc-900 mb-1"
                                   htmlFor="  LinkedIn"
                                 >
                                   LinkedIn
@@ -696,7 +696,7 @@ export default function Edit() {
                               </div>
                               <div className="flex flex-col w-full">
                                 <label
-                                  className="text-lg font-medium text-navy-900 mb-1"
+                                  className="text-lg font-medium text-zinc-900 mb-1"
                                   htmlFor="country"
                                 >
                                   Country of residence
@@ -718,7 +718,7 @@ export default function Edit() {
                               </div>
                               <div className="flex flex-col w-full">
                                 <label
-                                  className="text-lg font-medium text-navy-900 mb-1"
+                                  className="text-lg font-medium text-zinc-900 mb-1"
                                   htmlFor="excludedCompanies"
                                 >
                                   Companies to exclude
@@ -737,7 +737,7 @@ export default function Edit() {
                               </div>
                               <div className="flex flex-col w-full">
                                 <label
-                                  className="text-lg font-medium text-navy-900 mb-1"
+                                  className="text-lg font-medium text-zinc-900 mb-1"
                                   htmlFor="yearsOfExperience"
                                 >
                                   Years of experience

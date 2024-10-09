@@ -129,12 +129,12 @@ export default function Table({
 
       <div className='mt-4 flex justify-center'>
         <ReactPaginate
-          activeClassName={'item active '}
-          previousClassName={"item previous"}
-          nextClassName={"item next "}
-          pageClassName={'item pagination-page '}
-          containerClassName={'pagination'}
-          disabledClassName={'disabled-page'}
+          activeClassName={'flex justify-center items-center w-[30px] h-[30px] text-zinc-700 border border-zinc-700 rounded-full'}
+          previousClassName={"flex justify-center items-center w-[30px] h-[30px] text-zinc-700 border-r border-zinc-900 absolute left-0 px-10"}
+          nextClassName={"flex justify-center items-center w-[30px] h-[30px] text-zinc-700 border-l border-zinc-900 absolute right-0 px-10"}
+          pageClassName={'flex justify-center items-center w-[30px] h-[30px] text-zinc-700 '}
+          containerClassName={'flex items-center bg-zinc-300 w-[700px] h-[40px] justify-center flex-row list-none relative rounded-md'}
+          disabledClassName={'text-gray-300'}
           previousLabel={<GrFormPrevious style={{ fontSize: 18, width: 150 }} />}
           nextLabel={<MdNavigateNext style={{ fontSize: 18, width: 150 }} />}
           breakLabel={'. . .'}

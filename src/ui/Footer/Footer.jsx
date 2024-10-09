@@ -1,11 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { theme } from "../../theme/theme";
-
 export default function Footer() {
   return (
     <div className="flex h-full w-full">
-      <div className="h-full w-full bg-lightPrimary dark:!bg-navy-900 duration-200">
+      <div className="h-full w-full bg-lightPrimary dark:!bg-zinc-900 duration-200">
         <main className={`mx-[12px] h-full flex-none transition-all md:pr-2`}>
           <div className="h-full">
             <div className="flex w-full flex-col items-center justify-between px-1 pb-8 pt-3 lg:px-8 xl:flex-row">
