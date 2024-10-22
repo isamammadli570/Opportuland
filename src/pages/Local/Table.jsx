@@ -44,7 +44,7 @@ export default function Table({
       <Card extra={"w-full h-full px-6 pb-6 sm:overflow-x-auto mt-5  "}>
         <div className='mt-7 w-full '>
           <div className='w-full grid gap-4 '>
-            <div className='bg-[#bbc1c98a] py-3 px-2.5 text-sm rounded-xl'>
+            <div className='bg-zinc-200 py-3 px-2.5 text-sm rounded-xl'>
               <div className='grid grid-cols-8'>
                 <h3 className=' col-span-3 font-bold '>Vacancy</h3>
                 <h3 className=' col-span-1 font-bold '>Company</h3>

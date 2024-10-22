@@ -35,7 +35,7 @@ export default function Admin(props) {
 
       if (!token) {
         console.error('Access token is missing or invalid');
-        navigate('/signin');
+        navigate('/login');
         return;
       }
 

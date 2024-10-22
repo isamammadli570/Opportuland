@@ -177,7 +177,7 @@ function EmployerRegister() {
                                                 </label>
                                                 <input
                                                     placeholder="professional-email@example.com"
-                                                    className="focus:outline-0 p-4 rounded-lg border placeholder-yellow-600/60 border-[#D9D9D9] bg-[#F9F9F9]"
+                                                    className="focus:outline-0 p-4 rounded-lg border placeholder-yellow-600/60 border-[#D9D9D9] bg-[#F9F9F9] dark:text-zinc-950"
                                                     type="email"
                                                     name="email"
                                                     onChange={handleInputChange}
@@ -193,7 +193,7 @@ function EmployerRegister() {
                                                 </label>
                                                 <div className="w-full flex p-4 rounded-lg border border-[#D9D9D9] bg-[#F9F9F9]">
                                                     <input
-                                                        className="w-full focus:outline-0 placeholder-gray-400 bg-[#F9F9F9]"
+                                                        className="w-full focus:outline-0 placeholder-gray-400 bg-[#F9F9F9] dark:text-zinc-950"
                                                         placeholder="********"
                                                         type={viewPass ? "text" : "password"}
                                                         name="password"

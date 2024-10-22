@@ -1,15 +1,13 @@
-import { useState, useContext, useEffect, Fragment } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import AuthContext from "../../contexts/TokenManager";
-import { Menu, Transition } from "@headlessui/react";
-import { theme } from "../../theme/theme";
 import { HiBars3 } from "react-icons/hi2";
 import Theme from "../../theme/ThemeDL"
 import { GoChevronDown } from "react-icons/go";
+import UserImg from "../../assets/user.png"
 
 const Sidebar = ({ isOpen, setIsOpen }) => {
- /*  const [hamburgerMenuOpen, setHamburgerMenuOpen] = useState(false); */
+  /*  const [hamburgerMenuOpen, setHamburgerMenuOpen] = useState(false); */
   const [selectedItem, setSelectedItem] = useState("Get Started");
   const user = localStorage.getItem("user");
   const userData = JSON.parse(user);
@@ -28,12 +26,6 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
 
   const [open, setOpen] = useState(true);
 
-  /* const handleItemClick = (itemType) => {
-    setSelectedItem(itemType);
-    const route = itemType === "User" ? "/signup" : "/company";
-    navigate(route);
-  }; */
-
   const isActive = (path) => location.pathname === path;
 
   useEffect(() => {
@@ -51,7 +43,6 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
       setSelectedItem("Get Started");
     }
   }, [location.pathname, user, googleUser]);
-
 
   const handleNavigateStart = () => {
     navigate("/login");
@@ -73,13 +64,13 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           {/* navbar div */}
           <div className="flex justify-between items-center ">
             {/* logo hissesi */}
-            <div className="md:mx-[56px] mx-[20px] flex ">
+            <div className="md:mx-[56px] mx-[12px] flex gap-1">
               <div className="font-poppins md:text-[26px] text-[16px] font-bold uppercase text-zinc-700 dark:text-white">
                 <Link to="/" className="flex h-2.5 font-poppins font-bold uppercase text-zinc-700 dark:text-white">
                   <span className="font-medium">Opportu</span> <p>Land</p> </Link>
               </div>
               {/* theme hissesi */}
-              <div className="md:flex hidden">
+              <div className="lg:flex hidden">
                 <Theme />
               </div>
             </div>
@@ -142,7 +133,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                       <li>
                         <Link
                           to="/messages"
-                          className={`font-bold lg:flex hidden text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/messages") ? "text-yellow-500" : "text-zinc-700 dark:text-white"
+                          className={`lg:flex hidden text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/messages") ? "text-yellow-500" : "text-zinc-700 dark:text-white"
                             } hover:text-yellow-500 dark:hover:text-yellow-500`}
                         >
                           Messages
@@ -153,62 +144,41 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                     {/* admin hissesindeki dahsboard */}
                     {user || googleUser ? (
                       <>
-                        <Menu as="div" className="lg:flex px-4 relative text-left ">
-                          <div>
-                            <Menu.Button
-                              style={{ background: theme.dark, color: theme.white }}
-                              className="px-2 inline-flex w-full border-none justify-center gap-x-1.5 rounded-md py-2 text-sm font-semibold text-gray-900 shadow-sm"
-                            >
-                              {user ? userData.username : googleUserData.name}
-                              <ChevronDownIcon
-                                className="-mr-1 h-5 w-5 text-gray-400"
-                                aria-hidden="true"
-                              />
-                            </Menu.Button>
+                        <div className="group relative cursor-pointer ">
+                          <button className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" type="button">
+                            <span className="sr-only">Open user menu</span>
+                            {user ?
+                              <img className="w-8 h-8 rounded-full" src={UserImg} alt="user" />
+                              :
+                              <img className="w-8 h-8 rounded-full" src={googleUserData.avatar} alt="user" />
+                            }
+                          </button>
+                          <div
+                            className="invisible absolute right-0 z-50 flex w-20  flex-col bg-white dark:bg-zinc-800 rounded-md text-gray-800 dark:text-gray-200 shadow-xl group-hover:visible">
+                            <div className="py-3 px-2 text-sm text-zinc-900 dark:text-white cursor-default">
+                              <div className="truncate">{user ? userData.username : googleUserData.name}</div>
+                            </div>
+                            {user &&
+                              <Link
+                                to="edit"
+                                className="my-2 block border-b border-stone-100 md:px-0 px-2 py-1 hover:text-black md:mx-2 hover:text-yellow-500">
+                                Edit
+                              </Link>
+                            }
+                            <Link
+                              to="/"
+                              onClick={logOut}
+                              className="my-2 block border-b border-gray-100 md:px-0 px-2 py-1 hover:text-black md:mx-2 hover:text-yellow-500">
+                              Log out
+                            </Link>
                           </div>
-
-                          <Transition
-                            as={Fragment}
-                            enter="transition ease-out duration-100"
-                            enterFrom="transform opacity-0 scale-95"
-                            enterTo="transform opacity-100 scale-100"
-                            leave="transition ease-in duration-75"
-                            leaveFrom="transform opacity-100 scale-100"
-                            leaveTo="transform opacity-0 scale-95"
-                          >
-                            <Menu.Items className="ml-10 absolute duration-200 right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                              <div
-                                className="py-1"
-                                style={{ background: theme.dark, color: theme.white }}
-                              >
-                                {user && <Menu.Item style={{ background: theme.dark, color: theme.white }}>
-                                  <Link
-                                    to="edit"
-                                    className="text-gray-700 block px-4 py-2 text-sm text-bold"
-                                  >
-                                    Edit Profile
-                                  </Link>
-                                </Menu.Item>}
-                                <Menu.Item style={{ background: theme.dark, color: theme.white }}>
-                                  <Link
-                                    to="/"
-                                    className="text-gray-700 block px-4 py-2 text-sm text-bold"
-                                    onClick={logOut}
-                                  >
-                                    Sign out
-                                  </Link>
-                                </Menu.Item>
-                              </div>
-                            </Menu.Items>
-                          </Transition>
-                        </Menu>
-
+                        </div>
                       </>
                     ) : userCompany ? (
                       userDataCompany.admin ? (
                         <Link
                           to="/admin/default"
-                          className={`ml-8 font-bold lg:flex hidden text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/admin/default") ? "text-yellow-500" : "text-zinc-700 dark:text-white"
+                          className={`ml-8 lg:flex hidden text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/admin/default") ? "text-yellow-500" : "text-zinc-700 dark:text-white"
                             } hover:text-yellow-500 dark:hover:text-yellow-500`}
                         >
                           Dashboard
@@ -216,7 +186,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                       ) : (
                         <Link
                           to="/admin/my-contests"
-                          className={`ml-8 font-bold lg:flex hidden text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/admin/my-contests") ? "text-yellow-500" : "text-zinc-700 dark:text-white"
+                          className={`ml-8 lg:flex hidden text-[16px] md:bg-transparent md:hover:bg-transparent duration-300 hover:cursor-pointer py-4 md:py-0 border-b md:border-none w-full md:w-fit text-center md:text-start ${isActive("/admin/my-contests") ? "text-yellow-500" : "text-zinc-700 dark:text-white"
                             } hover:text-yellow-500 dark:hover:text-yellow-500`}
                         >
                           Dashboard
@@ -226,11 +196,13 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                     ) : (
                       <>
                         {/* button hissesi */}
-                        <div className="flex gap-3 px-2">
+                        <div className="flex items-center gap-3 px-2">
                           <div className="group relative cursor-pointer ">
                             <div className="flex items-center justify-between border-2 border-yellow-400 text-yellow-500 rounded-md hover:bg-yellow-400 hover:text-white duration-200">
-                              <a className="menu-hover py-[6px] text-base text-black mx-4">
-                                Log in
+                              <a className="flex gap-1 menu-hover py-[6px] text-base text-black md:mx-4 mx-1">
+                                {/* Log in */}
+                                <p>Log</p>
+                                <p>in</p>
                               </a>
                             </div>
                             <div
@@ -240,7 +212,6 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                                 className="my-2 block border-b border-stone-100 md:px-0 px-2 py-1 hover:text-black md:mx-2 hover:text-yellow-500">
                                 Log in
                               </p>
-
                               <p
                                 onClick={handleNavigateStartRegisterUser}
                                 className="my-2 block border-b border-gray-100 md:px-0 px-2 py-1 hover:text-black md:mx-2 hover:text-yellow-500">
@@ -251,8 +222,10 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
 
                           <div className="group relative cursor-pointer ">
                             <div className="flex items-center justify-between  bg-yellow-400 text-black rounded-md hover:bg-yellow-500 duration-200">
-                              <a className="menu-hover py-2 text-base text-black lg:mx-2 px-1">
-                                For Employer
+                              <a className="flex gap-1 menu-hover py-2 text-base text-black md:mx-2 px-1">
+                                {/* For Employer */}
+                                <p>For</p>
+                                <p>Employer</p>
                               </a>
                               <span className="transition duration-200 group-hover:rotate-180 px-2">
                                 <GoChevronDown />
@@ -265,7 +238,6 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                                 className="my-2 block border-b border-stone-100 py-1 hover:text-black md:mx-2 hover:text-yellow-500 ">
                                 Log in
                               </p>
-
                               <p
                                 onClick={handleNavigateStartRegister}
                                 className="my-2 block border-b border-gray-100 py-1 hover:text-black md:mx-2 hover:text-yellow-500 ">
@@ -274,18 +246,15 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                             </div>
                           </div>
                         </div>
-
-
                       </>
                     )}
                   </ul>
                 </div >
-                {/* responsive bar */}
                 <div>
                   {!isOpen && (
                     <HiBars3
                       onClick={() => setIsOpen((open) => !open)}
-                      className={`lg:hidden text-2xl cursor-pointer dark:text-white`}
+                      className={`lg:hidden text-2xl cursor-pointer dark:text-white ml-3`}
                     />
                   )}
                 </div>

@@ -1,6 +1,7 @@
+import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import Footer from './ui/Footer/Footer';
 import { TokenManager } from './contexts/TokenManager';
+import Footer from './ui/Footer/Footer';
 import Error from './Error/Error';
 import SingleJob from './pages/Remote/SingleJob';
 import Messages from './ui/Messages/Messages';
@@ -17,7 +18,6 @@ import Statistics from './pages/Statistics/Statistics';
 import CompanySignUp from './Company/CompanySignUp';
 import DataWebsite from './Company/DataWebsite';
 import AdminLayout from './layouts/admin';
-import { useState } from 'react';
 import ResponsiveNav from './ui/Sidebar/ResponsiveNav';
 import EmployerRegister from './Registration/Employer/register/EmployerRegister';
 import EmployerLogin from './Registration/Employer/login/EmployerLogin';
@@ -43,11 +43,11 @@ const MainApp = () => {
       </div>
 
       <Routes>
-        <Route path='/:submissionId' element={<Feed />} />
         <Route path='/' element={<Feed />} />
+        <Route path='/:submissionId' element={<Feed />} />
 
-        <Route path='/remote' element={<Remote />} />
         <Route path='/local' element={<Local />} />
+        <Route path='/remote' element={<Remote />} />
         <Route path='/job/:subject/:id' element={<SingleJob />} />
 
         <Route path='/contest' element={<Contests />} />

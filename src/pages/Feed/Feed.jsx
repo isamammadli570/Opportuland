@@ -496,7 +496,7 @@ const Feed = () => {
                           ) : (
                             <>
                               <button
-                                className={`rounded  py-2 px-4 transition duration-200 ease-in-out border ${userVotes[submission._id] ? 'bg-yellow-500 text-white' : 'bg-zinc-100 text-zinc-500 dark:bg-zinc-300 dark:border-zinc-600'} hover:bg-yellow-500 hover:text-white`}
+                                className={`rounded  py-2 px-4 transition duration-200 ease-in-out border ${userVotes[submission._id] ? 'bg-yellow-500 text-white' : 'bg-zinc-100 text-zinc-500 dark:bg-zinc-300 dark:border-zinc-600'} dark:hover:bg-yellow-500 hover:bg-yellow-500 hover:text-white`}
                                 onClick={toggleModal}
                               >
                                 <FontAwesomeIcon icon={faCaretUp} className="md:w-6 " />
@@ -510,7 +510,7 @@ const Feed = () => {
                             </>
                           )}
                           <button
-                            className="rounded py-2 px-4 mt-2 lg:h-[47px] transition duration-200 ease-in-out border bg-zinc-100 text-zinc-500 dark:bg-zinc-300 dark:border-zinc-600 hover:bg-zinc-200 dark:hover:bg-zinc-600"
+                            className="rounded py-2 px-4 mt-2 lg:h-[47px] transition duration-200 ease-in-out border bg-zinc-100 text-zinc-500 dark:bg-zinc-300 dark:border-zinc-600 hover:bg-zinc-200 dark:hover:bg-zinc-100"
                             onClick={() => copyLinkToClipboard(submission._id)}
                           >
                             <FontAwesomeIcon icon={faLink} className="md:w-6 " />

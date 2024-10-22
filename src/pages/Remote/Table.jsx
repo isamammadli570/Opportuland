@@ -44,8 +44,8 @@ export default function Table({
     <>
       <Card extra={"w-full h-full px-6 pb-6 sm:overflow-x-auto mt-5  "}>
         <div className='mt-7 w-full '>
-          <div className='w-full grid gap-4 '>
-            <div className='bg-[#bbc1c98a] py-3 px-2.5 text-sm rounded-xl'>
+          <div className='w-full grid gap-4  '>
+            <div className='bg-zinc-200 dark:text-zinc-900 py-3 px-2.5 md:text-sm text-xs rounded-xl'>
               <div className='grid grid-cols-8'>
                 <h3 className=' col-span-3 font-bold '>Vacancy</h3>
                 <h3 className=' col-span-1 font-bold '>Company</h3>
@@ -55,7 +55,8 @@ export default function Table({
                 <h3 className=' col-span-1 font-bold '>See More</h3>
               </div>
             </div>
-            <div>
+
+            <div >
               {loading ? (
                 <div className='w-full flex justify-center'>
                   {loading ? <div className='fixed inset-0 z-50'> <Loading /> </div> : null}
@@ -71,19 +72,15 @@ export default function Table({
                   const remainingSkills = skills?.slice(maxSkillsToShow)
 
                   const cleanJobName = job?.job_name?.replace(/[/\\]/g, '');
+
                   return (
                     <div
                       key={index}
-                      className=' py-3 px-2.5 text-sm grid grid-cols-8  items-center  hover:bg-slate-300/50 duration-300'
+                      className='py-3 px-2.5 md:text-sm text-xs grid grid-cols-8  items-center  hover:bg-slate-300/50 duration-300'
                     >
-                      <h3 className='cursor-pointer col-span-3 text-black/70 font-medium'>
-                        {job?.job_name}
-                      </h3>
-                      <h3 className='col-span-1 text-black/70 font-medium'>
-                        {job?.company}
-                      </h3>
-
-                      <h3 className='col-span-1 text-black/70 font-medium'>
+                      <h3 className='cursor-pointer col-span-3 text-black/70 font-medium line-clamp-1'>{job?.job_name}</h3>
+                      <h3 className='col-span-1 text-black/70 font-medium truncate'>{job?.company}</h3>
+                      <h3 className='col-span-1 text-black/70 font-medium truncate'>
                         {(() => {
                           if (job?.required_experience_years === null) {
                             return 'Not Available';
@@ -96,7 +93,7 @@ export default function Table({
                           }
                         })()}
                       </h3>
-                      <h3 className='col-span-1 text-black/70 font-medium whitespace-pre-line'>
+                      <h3 className='col-span-1 text-black/70 font-medium line-clamp-1 whitespace-pre-line'>
                         {job?.location}
                       </h3>
                       <h3 className='col-span-1 text-green-500 font-medium'>
@@ -112,7 +109,7 @@ export default function Table({
                         /* target='_blank' */
                         >
                           <button
-                            className='text-white lg:w-32 md:w-24 w-16 px-3 py-2 bg-yellow-500font-bold rounded-md
+                            className='text-white lg:w-32 md:w-24 w-12 md:px-3 md:py-2 px-2 py-1 rounded-md
                             bg-yellow-500 duration-200 border-r hover:bg-yellow-600 '
                           >
                             View

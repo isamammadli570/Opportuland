@@ -69,7 +69,7 @@ const SignIn = () => {
 
                         <input
                           placeholder='username'
-                          className='focus:outline-0 p-4 rounded-lg border placeholder-yellow-600/60 border-[#D9D9D9] bg-[#F9F9F9] '
+                          className='focus:outline-0 p-4 rounded-lg border placeholder-yellow-600/60 border-[#D9D9D9] bg-[#F9F9F9] dark:text-zinc-950 '
                           type='email'
                           name='email'
                           onKeyDown={(e) => {
@@ -90,7 +90,7 @@ const SignIn = () => {
                         </label>
                         <div className='w-full flex  p-4 rounded-lg border border-[#D9D9D9] bg-[#F9F9F9]'>
                           <input
-                            className='w-full focus:outline-0  placeholder-gray-400 bg-[#F9F9F9]'
+                            className='w-full focus:outline-0  placeholder-gray-400 bg-[#F9F9F9] dark:text-zinc-950'
                             placeholder='********'
                             type={viewPass ? 'text' : 'password'}
                             name='password'
@@ -125,7 +125,7 @@ const SignIn = () => {
                     <input
                       className='justify-self-center w-full flex items-center justify-center sm:block  bg-yellow-500 hover:bg-yellow-600 py-3.5 px-32 text-white rounded-lg mt-8 sm:mt-10 hover:cursor-pointer'
                       type='submit'
-                      value='Sign In'
+                      value='Log In'
                       onClick={(e) => {
                         e.preventDefault()
                         logIn({

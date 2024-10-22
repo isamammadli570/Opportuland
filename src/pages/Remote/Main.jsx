@@ -7,9 +7,9 @@ import { useSearchParams } from 'react-router-dom'
 export default function Main() {
   const [jobData, setJobData] = useState([])
   const [loading, setLoading] = useState(true)
-  const [searchQuery, setSearchQuery] = useState('')
   const [totalPages, setTotalPages] = useState()
-
+  
+  const [searchQuery, setSearchQuery] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
   const [searchParams, setSearchParams] = useSearchParams();
 
